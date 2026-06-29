@@ -91,6 +91,10 @@ section.sec{padding:30px 0 32px 22px;border-bottom:1px solid var(--hair);border-
 .sec.s3{--sc:var(--red);--scl:var(--red-line)}
 .sec.s4{--sc:var(--amber);--scl:var(--amber-line)}
 .sec.s5{--sc:var(--neon);--scl:var(--neon-line)}
+.sec.s6{--sc:var(--neon);--scl:var(--neon-line)}
+.qfig{margin:18px 0 6px}
+.qfig svg{max-width:100%;height:auto;display:block;border:1px solid var(--hair-2);border-radius:12px;background:#ffffff;padding:6px}
+.qfig figcaption{font-size:12.5px;color:var(--muted);margin-top:8px;line-height:1.7}
 .snum{display:flex;align-items:baseline;gap:13px;margin-bottom:15px}
 .snum .n{font-family:var(--mono);font-size:12px;font-weight:600;color:var(--sc);letter-spacing:.1em}
 .snum h2{font-size:12.5px;font-weight:700;letter-spacing:.16em;text-transform:uppercase;color:#fff}

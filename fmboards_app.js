@@ -86,14 +86,16 @@
     const evRows=e.evidence.map(r=>`<tr><td>${r.src}</td><td><a class="pmid" href="https://pubmed.ncbi.nlm.nih.gov/${r.pmid}/" target="_blank" rel="noopener">${r.pmid}</a></td><td>${r.point}</td></tr>`).join('');
     const gl=e.guideline.map(b=>`<li>${b}</li>`).join('');
     const rf=e.refs.map((r,i)=>`<div><span class="rn">${i+1}</span><span>${r}</span></div>`).join('');
+    const pts=(e.points||[]).map(b=>'<li>'+b+'</li>').join('');
     const last=idx===N-1;
     $('#exp').innerHTML=`
-      <section class="sec s1 reveal"><div class="snum"><span class="n">01</span><h2>正解根拠</h2></div>${e.core}</section>
+      <section class="sec s1 reveal"><div class="snum"><span class="n">01</span><h2>正解根拠</h2></div>${e.core}${e.fig||''}</section>
       <section class="sec s2 reveal"><div class="snum"><span class="n">02</span><h2>主要エビデンス（PubMed照合済）</h2></div>
         <table><thead><tr><th>指針 / 文献</th><th>PMID</th><th>要点</th></tr></thead><tbody>${evRows}</tbody></table></section>
       <section class="sec s3 reveal"><div class="snum"><span class="n">03</span><h2>誤答の検討</h2></div>${e.distractors}</section>
       <section class="sec s4 reveal"><div class="snum"><span class="n">04</span><h2>最新ガイドライン</h2></div><ul class="bl">${gl}</ul></section>
-      <section class="sec s5 reveal"><div class="snum"><span class="n">05</span><h2>参考文献</h2></div><div class="refs">${rf}</div></section>
+      ${pts?`<section class="sec s5 reveal"><div class="snum"><span class="n">05</span><h2>習得すべき要点</h2></div><ul class="bl">${pts}</ul></section>`:''}
+      <section class="sec s6 reveal"><div class="snum"><span class="n">${pts?'06':'05'}</span><h2>参考文献</h2></div><div class="refs">${rf}</div></section>
       <div class="navbtns"><button class="next" id="next">${last?'結果を見る':'次の問題へ'} &nbsp;→</button></div>`;
     $('#exp').classList.add('show');
     $('#next').onclick=()=>{ if(last){showResult()} else {idx++; renderQuestion()} };
