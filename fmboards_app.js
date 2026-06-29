@@ -83,7 +83,17 @@
     });
     const h=$('#hint'); if(h)h.style.display='none';
     const e=q.explain;
-    const evRows=e.evidence.map(r=>`<tr><td>${r.src}</td><td><a class="pmid" href="https://pubmed.ncbi.nlm.nih.gov/${r.pmid}/" target="_blank" rel="noopener">${r.pmid}</a></td><td>${r.point}</td></tr>`).join('');
+    const evRows=e.evidence.map((r,ri)=>{
+      const main=`<tr><td>${r.src}</td><td><a class="pmid" href="https://pubmed.ncbi.nlm.nih.gov/${r.pmid}/" target="_blank" rel="noopener">${r.pmid}</a></td><td>${r.point}${r.pico?` <button class="picochip" type="button" data-t="pico-${idx}-${ri}">PICO ▾</button>`:''}</td></tr>`;
+      if(!r.pico)return main;
+      const p=r.pico;
+      const det=`<tr class="picorow" id="pico-${idx}-${ri}"><td colspan="3"><div class="picobox">`+
+        `<div class="picogrid"><div><span class="pk pc">P</span>${p.p}</div><div><span class="pk pc">I</span>${p.i}</div><div><span class="pk pc">C</span>${p.c}</div><div><span class="pk pc">O</span>${p.o}</div></div>`+
+        `<div class="picoline"><span class="pk nn">NNT</span>${p.nnt}</div>`+
+        `<div class="picoline"><span class="pk cav">批判的吟味</span>${p.caveat}</div>`+
+        `</div></td></tr>`;
+      return main+det;
+    }).join('');
     const gl=e.guideline.map(b=>`<li>${b}</li>`).join('');
     const rf=e.refs.map((r,i)=>`<div><span class="rn">${i+1}</span><span>${r}</span></div>`).join('');
     const pts=(e.points||[]).map(b=>'<li>'+b+'</li>').join('');
@@ -99,6 +109,7 @@
       <div class="navbtns"><button class="next" id="next">${last?'結果を見る':'次の問題へ'} &nbsp;→</button></div>`;
     $('#exp').classList.add('show');
     $('#next').onclick=()=>{ if(last){showResult()} else {idx++; renderQuestion()} };
+    document.querySelectorAll('.picochip').forEach(b=>b.onclick=()=>{const row=document.getElementById(b.dataset.t);if(!row)return;const open=row.classList.toggle('open');b.textContent=open?'PICO ▴':'PICO ▾';});
     $('.pips')&&($('.pips').innerHTML=pips());
     setTimeout(obs,40);
     setTimeout(()=>$('#exp').scrollIntoView({behavior:'smooth',block:'start'}),240);
