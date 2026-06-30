@@ -13,9 +13,402 @@ const CONFIG = {
 };
 
 const QUESTIONS = [
+  /* ===================== Q1 (set1) ===================== */
+  {
+    dom:"公衆衛生・EBM", domEn:"VACCINE", cat:["公衆衛生・予防","感染症","免疫・膠原病"], setId:"set1",
+    title:"リツキシマブ治療中のワクチン接種計画",
+    meta:"外来 · 68 F · ANCA関連血管炎リツキシマブ維持中の予防接種計画",
+    stem:`あなたは総合病院の総合診療科で外来を担当している。68歳女性。1年前にMPO-ANCA陽性の顕微鏡的多発血管炎（ANCA関連血管炎）と診断され、リツキシマブ（リツキサン®）とステロイドで寛解導入された。現在はプレドニゾロン5mg/日で病勢が安定し、リツキシマブによる維持療法を受けている。前回のリツキシマブ投与から約5か月が経過し、4週間後に次回の定期投与を予定している。これまで肺炎球菌・帯状疱疹・季節性インフルエンザ・新型コロナのワクチンはいずれも接種していない。既往は高血圧でアムロジピンを内服中、薬物アレルギーや喫煙歴はない。体温36.6℃、血圧132/80mmHg、皮疹・関節腫脹はない。血液検査でCre 1.0mg/dL、Hb 12.0g/dL、CRP陰性。新型コロナワクチンに加えて、次回のリツキシマブ投与の前に行うワクチン接種計画として最も適切なのはどれか。`,
+    options:[
+      "PCV20（プレベナー20®）・組換え帯状疱疹ワクチン（シングリックス®）・不活化インフルエンザ",
+      "PPSV23（ニューモバックスNP®）・組換え帯状疱疹ワクチン（シングリックス®）・不活化インフルエンザ",
+      "PCV20（プレベナー20®）・生帯状疱疹ワクチン・不活化インフルエンザ",
+      "PCV20（プレベナー20®）・組換え帯状疱疹ワクチン（シングリックス®）・経鼻弱毒生インフルエンザ",
+      "PPSV23（ニューモバックスNP®）・生帯状疱疹ワクチン・経鼻弱毒生インフルエンザ"
+    ],
+    answer:0,
+    explain:{
+      core:`<p>本例は<b>リツキシマブ（抗CD20抗体）による維持療法中</b>で、前回投与から約5か月が経ちB細胞が回復しつつあり、4週間後に次回投与を控える。この<b>「次回投与の前」が、治療を遅らせずに接種できる最良の窓</b>である。原則は5点。</p>
+<ol type="1">
+<li><b>不活化・組換え・結合型ワクチンは免疫抑制下でも安全だが応答が減弱する</b>。リツキシマブ使用例では<b>次回投与の前（B細胞回復期）に接種し、接種後は次回投与を≥2週間あける</b>（ACR2022）。</li>
+<li><b>リツキシマブはB細胞を枯渇させ液性応答を著しく損なう</b>。投与<b>直後</b>の接種は応答が乏しく、最良の応答は<b>最終投与から約6か月後かつ次回投与前</b>（ACR2022; Bingham RCT）。</li>
+<li><b>生ワクチンはB細胞枯渇・ステロイド下で禁忌</b>。帯状疱疹は<b>生でなく組換え（シングリックス®）</b>を選ぶ。</li>
+<li><b>新型コロナワクチンも推奨される</b>（ACR2022）。これから免疫抑制を始めるなら<b>開始≥4週前</b>、すでにリツキシマブ中なら<b>最終投与後約6か月・次回投与前</b>に。インフルエンザは予定どおり接種する。</li>
+<li><b>緊急の寛解導入はワクチンのために遅らせない</b>。新規発症の重症血管炎では治療を優先し、ワクチンは投与前または投与後の適切な時期に行う（疾患コントロール優先）。</li>
+</ol>
+<p>→ 新型コロナワクチンに加え、3成分すべてを正しく選ぶのは<b>A</b>のみ（PCV20・組換えRZV・不活化インフルを次回投与の前に）。</p>
+<table>
+<thead>
+<tr class="header">
+<th>ワクチン（商品名）</th>
+<th>種別</th>
+<th>免疫抑制下</th>
+<th>最適タイミング</th>
+<th>本例</th>
+</tr>
+</thead>
+<tbody>
+<tr class="odd">
+<td>PCV20（プレベナー20®）<br>※またはPCV15（バクニュバンス®）→PPSV23</td>
+<td>結合型（非生）</td>
+<td>可（応答減弱しうる）</td>
+<td>次回RTX投与の前</td>
+<td>接種</td>
+</tr>
+<tr class="even">
+<td>組換え帯状疱疹（シングリックス®）</td>
+<td>組換え（非生・AS01）</td>
+<td>可（免疫不全に推奨）</td>
+<td>次回RTX投与の前・2回</td>
+<td>接種</td>
+</tr>
+<tr class="odd">
+<td>不活化インフルエンザ</td>
+<td>不活化（非生）</td>
+<td>可</td>
+<td>流行期（予定どおり）</td>
+<td>接種</td>
+</tr>
+<tr class="even">
+<td>新型コロナ（mRNA等）</td>
+<td>非生</td>
+<td>可（推奨）</td>
+<td>最終投与後≈6か月・次回投与前</td>
+<td>接種</td>
+</tr>
+<tr class="odd">
+<td>帯状疱疹“生”・水痘・MMR・BCG</td>
+<td>弱毒生</td>
+<td><b>禁忌</b></td>
+<td>—</td>
+<td>不可</td>
+</tr>
+</tbody>
+</table>`,
+      fig:``,
+      evidence:[
+        {src:"ACR 2022 ワクチンGL（Bass）",pmid:"36597810",point:"休薬・接種前倒しで免疫原性を最大化"},
+        {src:"EULAR 2019更新（Furer）",pmid:"31413005",point:"非生は治療下でも安全。<b>可能なら免疫抑制開始前</b>に"},
+        {src:"EULAR SLR 感染（Furer）",pmid:"31673420",point:"帯状疱疹 <b>IRR 2.9（2.4–3.3）</b> 対一般"},
+        {src:"IDSA 2013 免疫不全宿主（Rubin）",pmid:"24311479",point:"不活化可・<b>生は高度免疫抑制下で禁忌</b>"},
+        {src:"ZOE-50（Lal, NEJM 2015）",pmid:"25916341",point:"組換え帯状疱疹 有効率 <b>97.2%（93.7–99.0）</b>"},
+        {src:"ZOE-70（Cunningham, 2016）",pmid:"27626517",point:"有効率 <b>89.8%（84.2–93.7）</b>"},
+        {src:"RZV 血液腫瘍（Dagnew, 2019）",pmid:"31399377",point:"液性応答 <b>80.4%</b> 対プラセボ0.8%"},
+        {src:"RTX×ワクチンRCT（Bingham, 2010）",pmid:"20039397",point:"肺炎球菌多糖体応答 <b>57%</b> 対MTX単独<b>82%</b>、新規抗原47%対93%"},
+        {src:"メタ解析（Hua, 2014）",pmid:"24339395",point:"RTXでインフルH3N2応答 <b>OR 0.11（0.04–0.31）</b>"},
+        {src:"MTX休薬×インフル（Park, 2018）",pmid:"29572291",point:"接種後2週休薬で <b>75.5%</b> 対継続<b>54.5%</b>（p&lt;0.001）"},
+        {src:"ACIP 成人肺炎球菌 2022",pmid:"35085226",point:"<b>PCV20単独 または PCV15→PPSV23</b>"},
+        {src:"ACIP 免疫不全RZV 2022",pmid:"35051134",point:"<b>RZV 2回を推奨</b>"}
+      ],
+      distractors:`<p><b>B. 肺炎球菌をPPSV23単独にした</b> — 誤り。成人肺炎球菌の現行推奨は<b>PCV20単独、またはPCV15→PPSV23</b>で、PPSV23単独は推奨外（ACIP2022）。多糖体はT細胞非依存性で記憶に乏しく、<b>リツキシマブ下で応答が最も低下</b>する（多糖体57%対82%）。帯状疱疹・インフルは適切で、肺炎球菌の一点のみ誤り。<span class="bias">古い推奨の踏襲</span><span class="bias">premature closure</span></p>
+<p><b>C. 帯状疱疹を「生ワクチン（ZVL）」にした</b> — 誤り。生帯状疱疹ワクチンは弱毒生で、<b>B細胞枯渇・ステロイド下では禁忌</b>。帯状疱疹は<b>組換え（RZV／シングリックス®）</b>を選ぶ。Cは「生か組換えか」の一点のみ誤り。<span class="bias">既知ワクチン名へのアンカリング</span><span class="bias">生/不活化の混同</span></p>
+<p><b>D. インフルを「経鼻弱毒生（LAIV）」にした</b> — 誤り。経鼻インフルエンザワクチン（フルミスト）は<b>弱毒生で免疫抑制者に禁忌</b>。インフルは<b>不活化</b>を選ぶ。Dは「インフルの剤型」の一点のみ誤り。<span class="bias">“インフルエンザワクチン”の一括り（剤型の見落とし）</span></p>
+<p><b>E. 3成分すべてを誤った</b> — 誤り。PPSV23単独（肺炎球菌）＋生帯状疱疹（ZVL）＋経鼻弱毒生インフル（LAIV）の組み合わせで、製剤選択の誤りに加え<b>生ワクチン2種が禁忌</b>。最も不適切な組み合わせ。<span class="bias">生/不活化の系統的混同</span></p>`,
+      guideline:[
+        "<b>全体方針（EULAR2019／ACR2022）</b>：毎年の接種状況評価・共同意思決定。非生ワクチンは治療下でも安全。<b>緊急の免疫抑制導入はワクチンのために遅らせない</b>（疾患コントロール優先）。",
+        "<b>リツキシマブのタイミング</b>：これから始めるなら<b>開始≥4週前</b>。すでに投与中なら<b>次回投与の前（最終投与後≈6か月でB細胞が回復した時期）に接種し、接種後は次回投与を≥2週間あける</b>。インフルエンザは予定どおり接種し、後続のリツキシマブを2週間あける（ACR2022）。",
+        "<b>なぜ投与前か</b>：Bingham RCTで多糖体57%対82%・新規抗原47%対93%と応答低下。B細胞枯渇下では応答が乏しい。",
+        "<b>成人肺炎球菌</b>：<b>PCV20（プレベナー20®）単独</b>、または<b>PCV15（バクニュバンス®）→PPSV23（ニューモバックスNP®）</b>。結合型はT細胞依存性で免疫記憶を誘導。",
+        "<b>帯状疱疹</b>：組換え（シングリックス®）は非生で免疫抑制下も使用可（ZOE有効率97.2%/89.8%、血液腫瘍でも免疫原性確認）。日本でも2025年度から高齢者で定期接種（実施要領は国内通知を<b>要確認</b>）。",
+        "<b>新型コロナ</b>：ACR2022は免疫抑制患者への接種を推奨。可能なら免疫抑制開始前、リツキシマブ中は次回投与前（最終投与後≈6か月）が最良の応答。",
+        "<b>抗体モニタリング</b>：標準化された防御抗体閾値が未確立で、接種前抗体スクリーニングで対象を絞る運用は推奨されない（選択肢Eの否定根拠）。"
+      ],
+      points:[],
+      refs:[
+        "Bass AR, et al. 2022 ACR Guideline for Vaccinations in RMD. Arthritis Rheumatol. 2023;75(3):333-348. PMID 36597810",
+        "Furer V, et al. 2019 update of EULAR recommendations for vaccination in AIIRD. Ann Rheum Dis. 2020;79(1):39-52. PMID 31413005",
+        "Furer V, et al. Vaccine-preventable infections in AIIRD (SLR). RMD Open. 2019;5(2):e001041. PMID 31673420",
+        "Rubin LG, et al. 2013 IDSA guideline for vaccination of the immunocompromised host. Clin Infect Dis. 2014;58(3):e44-100. PMID 24311479",
+        "Lal H, et al. Adjuvanted herpes zoster subunit vaccine in older adults (ZOE-50). N Engl J Med. 2015;372(22):2087-2096. PMID 25916341",
+        "Cunningham AL, et al. Herpes zoster subunit vaccine in adults ≥70y (ZOE-70). N Engl J Med. 2016;375(11):1019-1032. PMID 27626517",
+        "Dagnew AF, et al. RZV in haematological malignancies. Lancet Infect Dis. 2019;19(9):988-1000. PMID 31399377",
+        "Bingham CO 3rd, et al. Immunization responses in RA treated with rituximab. Arthritis Rheum. 2010;62(1):64-74. PMID 20039397",
+        "Hua C, et al. MTX/anti-TNF/rituximab and vaccine responses in RA. Arthritis Care Res. 2014;66(7):1016-1026. PMID 24339395",
+        "Park JK, et al. MTX discontinuation and influenza vaccination in RA. Ann Rheum Dis. 2018;77(6):898-904. PMID 29572291",
+        "Kobayashi M, et al. PCV15/PCV20 among US adults: ACIP 2022. MMWR. 2022;71(4):109-117. PMID 35085226",
+        "Anderson TC, et al. RZV in immunocompromised adults: ACIP 2022. MMWR. 2022;71(3):80-84. PMID 35051134",
+        "要確認（PubMed非収載）：日本小児科学会 肺炎球菌結合型ワクチンの考え方（2024）、厚労省 帯状疱疹ワクチン定期接種（2025年度〜）。"
+      ]
+    }
+  },
+  /* ===================== Q2 (set1) ===================== */
+  {
+    dom:"日常病（高血圧）", domEn:"HYPERTENSION", cat:["循環器","老年医学"], setId:"set1",
+    title:"高齢者高血圧と症候性起立性低血圧",
+    meta:"在宅 · 85 F · 反復転倒・起立時失神を伴う高血圧",
+    stem:`あなたは在宅医療を行う診療所に勤務している。85歳女性。要介護1で独居し、週2回の訪問介護を利用している。この半年で2回転倒し、1回は朝にトイレへ立った際、意識を失って倒れ数秒で回復した。高血圧で5年前からアムロジピン5mgとテルミサルタン40mgを内服している。糖尿病・脳卒中・心疾患の既往はなく、認知機能は保たれている。喫煙・飲酒はしない。臥位血圧148/80mmHg・脈拍72/分（整）、起立3分後の血圧は110/68mmHgで立ちくらみを訴える。心雑音・頸静脈怒張・下腿浮腫はない。心電図は洞調律でST-T変化はなく、血算・電解質・腎機能・血糖に異常を認めない。まず行う対応として最も適切なのはどれか。`,
+    options:[
+      "経過観察",
+      "降圧薬の減量",
+      "ミドドリンの追加",
+      "弾性ストッキングの着用",
+      "サイアザイド系利尿薬の追加"
+    ],
+    answer:1,
+    explain:{
+      core:`<p>本症例は「<b>85歳・要介護1・反復転倒・起立時失神</b>」のフレイル像で、<b>症候性の起立性低血圧（OH）</b>を呈する。まず行うべきは<b>原因となりうる降圧薬の減量（脱処方）</b>。</p>
+<p>OHの定義（Freeman 2011）＝<b>起立後3分以内にSBP↓≥20 または DBP↓≥10mmHg</b>。本例はSBP −38mmHg＋立ちくらみ・失神既往＝<b>症候性OH</b>（無症候性OHとは管理が決定的に異なる）。</p>
+<p><b>降圧薬減量が第一選択である理由</b>：(1) 高齢者OHの最も是正可能な原因は薬剤性で、Ca拮抗薬（アムロジピン）・ARB（テルミサルタン）はOHを助長。OH/転倒管理は「<b>まず原因薬の見直し</b>」から（STOPPFall）。(2) <b>糖尿病・脳心血管疾患がなく</b>臥位148/80と著明高値でない＝厳格降圧の積極的適応がない。厳格降圧の利益（SPRINT, STEP）は<b>自立・非フレイル</b>例のもので、反復転倒・失神の要介護例に外挿できない。(3) フレイル＋低SBP＋多剤は死亡と関連（PARTAGE：SBP&lt;130＋≥2剤で2年死亡 <b>adj HR 1.78</b>）。(4) 減薬は安全（OPTIMISE：80歳以上で1剤減でも12週の血圧管理が<b>非劣性</b>、SBP差+3.4mmHg）。</p>`,
+      fig:``,
+      evidence:[
+        {src:"OPTIMISE（Sheppard, 2020）",pmid:"32453368",point:"1剤減薬は12週で<b>非劣性</b>（調整RR 0.98）、SBP+3.4 ／脱処方は短期的に安全"},
+        {src:"PARTAGE（Benetos, 2015）",pmid:"25685919",point:"低SBP&lt;130＋<b>≥2剤</b>で2年死亡 <b>adj HR 1.78（1.34–2.37）</b> ／過降圧＋多剤は死亡リスク"},
+        {src:"Juraschek（SPRINT OH, 2020）",pmid:"31983312",point:"<b>無症候性</b>OHはCVD/失神/転倒と非関連 ／裏返せば<b>症候性</b>OHは介入対象"},
+        {src:"SPRINT（2015）",pmid:"26551272",point:"厳格降圧 primary <b>HR 0.75（0.64–0.89）</b> ／利益集団＝自立例"},
+        {src:"SPRINT ≥75歳（2016）",pmid:"27195814",point:"primary <b>HR 0.66</b>、injurious falls <b>HR 0.91（NS）</b> ／<b>自立</b>高齢者で有益"},
+        {src:"STEP（2021）",pmid:"34491661",point:"強化 primary <b>HR 0.74</b> ／上限80歳・自立例"},
+        {src:"HYVET（2008）",pmid:"18378519",point:"全死亡 −21%・心不全 −64% ／地域在住・非フレイル"},
+        {src:"ACCORD-BP（2010）",pmid:"20228401",point:"&lt;120は無効 <b>HR 0.88（P=0.20）</b> ／過度の降圧で純益乏しい"},
+        {src:"STOPPFall（2021）",pmid:"33349863",point:"FRIDsと脱処方手順 ／まず原因薬の見直し"},
+        {src:"OH定義（Freeman, 2011）",pmid:"21431947",point:"起立3分で SBP↓≥20 / DBP↓≥10 ／判定根拠"},
+        {src:"JSH2019（Umemura, 2019）",pmid:"31375757",point:"後期高齢者・フレイルは<b>個別化</b>・有害事象時の緩和 ／日本の標準"}
+      ],
+      distractors:`<p><b>A. 経過観察</b> — 半年で2回転倒・1回起立時失神という重大有害事象が顕在化。是正可能な原因がある状況で「待つ」のは次の骨折リスクに曝す。<span class="bias">omission bias</span><span class="bias">現状維持バイアス</span></p>
+<p><b>C. ミドドリンの追加</b> — α1刺激薬はOHの薬物療法だが<b>非薬物でも不十分な難治例の後段</b>。降圧薬という原因を残したまま昇圧薬を足すのは非合理（臥位高血圧も増悪）。<span class="bias">commission bias（“do something”）</span></p>
+<p><b>D. 弾性ストッキングの着用</b> — 非薬物療法の一つだが「最初の最も適切な対応」ではない。原因薬の是正という上流介入を差し置く順序違反。要介護では着脱困難等の制約も。<span class="bias">アンカリング</span></p>
+<p><b>E. サイアザイド系利尿薬の追加</b> — <b>最悪</b>。血管内容量を減らしOHを増悪、転倒・失神・低Na/低K/AKIリスク。降圧を減らすべき局面で増やすのは病態と真逆。<span class="bias">フレーミング効果／ガイドライン誤適用</span></p>`,
+      guideline:[
+        "<b>(1) 「年齢」でなく「自立度・フレイル」で層別化</b>：自立・非フレイルには厳格降圧が有益（SPRINT≥75, STEP）／要介護・反復転倒・症候性OHでは害が上回る（PARTAGE）。2024 ESC・2025 ACC/AHAも高齢・フレイルは個別化（<b>原典で要確認</b>）。",
+        "<b>(2) 利益が「及ぶ／及ばない」集団</b>：及ぶ＝自立・歩行可能（SPRINT≥75：primary 0.66、injurious falls 非増加）。及ばない＝施設入所・フレイル多剤（PARTAGE 死亡 adj HR 1.78）、DMで&lt;120（ACCORD 無効）、本症例。",
+        "<b>(3) OH管理の順序</b>：①原因薬の見直し（最優先）→②非薬物→③難治例にフルドロコルチゾン/ミドドリン（図2）。",
+        "<b>(4) 脱処方</b>：全処方の棚卸し→害&gt;益を同定（OHなら降圧薬・利尿薬）→<b>1剤ずつ</b>減量（OPTIMISE非劣性）→家庭血圧・起立時血圧・症状をモニタ→必要なら再開。",
+        "<b>(5) 家庭血圧・起立時血圧</b>：高齢者では起立時血圧の系統的測定がOH検出と安全な降圧調整の弁になる。減薬後の追跡指標。"
+      ],
+      points:[],
+      refs:[
+        "Freeman R, et al. Consensus on orthostatic hypotension. Clin Auton Res. 2011;21(2):69-72. PMID 21431947",
+        "Sheppard JP, et al. Antihypertensive medication reduction (OPTIMISE). JAMA. 2020;323(20):2039-2051. PMID 32453368",
+        "Benetos A, et al. Multiple BP medications and mortality in nursing home residents (PARTAGE). JAMA Intern Med. 2015;175(6):989-995. PMID 25685919",
+        "Juraschek SP, et al. Orthostatic hypotension and outcomes: SPRINT. Hypertension. 2020;75(3):660-667. PMID 31983312",
+        "SPRINT Research Group. Intensive vs standard BP control. N Engl J Med. 2015;373(22):2103-2116. PMID 26551272",
+        "Williamson JD, et al. Intensive vs standard BP control ≥75y. JAMA. 2016;315(24):2673-2682. PMID 27195814",
+        "Zhang W, et al. Intensive BP control in older patients (STEP). N Engl J Med. 2021;385(14):1268-1279. PMID 34491661",
+        "Beckett NS, et al. Treatment of hypertension ≥80y (HYVET). N Engl J Med. 2008;358(18):1887-1898. PMID 18378519",
+        "Cushman WC, et al. Intensive BP control in type 2 diabetes (ACCORD-BP). N Engl J Med. 2010;362(17):1575-1585. PMID 20228401",
+        "Seppala LJ, et al. STOPPFall. Age Ageing. 2021;50(4):1189-1199. PMID 33349863",
+        "Umemura S, et al. JSH 2019 guidelines. Hypertens Res. 2019;42(9):1235-1481. PMID 31375757",
+        "要確認（PubMed非収載）：日本高血圧学会 高血圧管理・治療ガイドライン2025、日本老年医学会 高齢者高血圧/安全な薬物療法GL、2024 ESC・2025 ACC/AHA高血圧GL。"
+      ]
+    }
+  },
+  /* ===================== Q3 (set1) ===================== */
+  {
+    dom:"女性医療（HRT）", domEn:"MENOPAUSE", cat:["女性医療","内分泌・代謝"], setId:"set1",
+    title:"血管運動症状への最適な治療",
+    meta:"52 F · 女性外来 · 自然閉経後VMS · 特発性DVT既往",
+    stem:`あなたは女性外来のある診療所に勤務している。52歳女性。1年前に自然閉経した。半年前から1日に数回の顔のほてり・発汗と寝汗による中途覚醒があり、日中の倦怠感で家事に支障が出ている。月経は12か月以上なく、不正性器出血はない。子宮全摘の既往はなく、子宮筋腫の指摘もない。5年前に長期臥床などの誘因なく左下肢深部静脈血栓症を発症し、抗凝固薬を6か月内服して中止した。乳癌・冠動脈疾患・肝疾患の既往はなく、家族歴に乳癌はない。喫煙はせず、BMIは24。血圧124/76mmHg。乳房・内診に異常はなく、直近の子宮頸部細胞診とマンモグラフィも異常を認めない。血管運動症状に対する治療として最も適切なのはどれか。`,
+    options:[
+      "SSRIの投与",
+      "経腟エストロゲン",
+      "経皮エストロゲン",
+      "経口結合型エストロゲン",
+      "経皮エストラジオールとプロゲスチンの併用"
+    ],
+    answer:0,
+    explain:{
+      core:`<p>「<b>VMSを治療したいが全身HRTが禁忌</b>」という、HRTの禁忌と適応を同時に問う構造。</p>
+      <ul>
+      <li><b>ゲート1 ── 特発性VTE既往は全身HRTの禁忌</b>。5年前の「誘因のない」DVTは再発リスクが高く、エストロゲンは経路を問わず凝固系を活性化しうる。本邦・国際GL（NICE/NAMS）ともVTE既往を禁忌/最上位の慎重投与。→ C・D・E（全身E）は不可。</li>
+      <li><b>ゲート2 ── 子宮を有する女性にE単独は不可</b>（子宮内膜増殖症・癌＝unopposed estrogen）。→ D を否定。</li>
+      <li><b>ゲート3 ── 経腟エストロゲンはGSM（局所）用で全身VMSに無効</b>。→ B を否定。</li>
+      <li><b>ゲート4 ── 全身HRTが使えないVMSの非ホルモン第一選択＝SSRI/SNRI</b>（NAMS 2023 Level I）。</li>
+      </ul>
+      <p>→ 4ゲートすべて通過するのは <b>A のみ</b>。</p>`,
+      fig:``,
+      evidence:[
+        {src:"WHI E+P（Rossouw, 2002）",pmid:"12117397",point:"RCT・子宮あり16,608例。<b>肺塞栓 HR 2.13（1.39–3.25）</b>、脳卒中1.41、乳癌1.26"},
+        {src:"WHI E単独（Anderson, 2004）",pmid:"15082697",point:"RCT・子宮摘出後。脳卒中 <b>HR 1.39（1.10–1.77）</b>、乳癌0.77。子宮摘出者限定"},
+        {src:"ESTHER（Canonico, 2007）",pmid:"17309934",point:"症例対照・特発性VTE初発。経口E <b>OR 4.2（1.5–11.6）</b>／<b>経皮E OR 0.9（0.4–2.1）＝非有意</b>"},
+        {src:"HRT/VTE 大規模（Vinogradova, 2019）",pmid:"30626577",point:"症例対照（VTE 80,396例）。経口全体 aOR 1.58／CEE+MPA 2.10／<b>経皮 aOR 0.93（0.87–1.01）</b>"},
+        {src:"メタ解析（Rovinski, 2018）",pmid:"29936403",point:"SR/MA。経口 OR 1.72／<b>非経口 OR 0.97（0.90–1.06）</b>"},
+        {src:"ELITE（Hodis, 2016）",pmid:"27028912",point:"RCT・閉経<6年 vs ≥10年。早期開始でCIMT抑制（交互作用 P=0.007）＝<b>timing仮説</b>"},
+        {src:"低用量パロキセチン7.5mg（Simon, 2013）",pmid:"24045678",point:"2本の第3相RCT。VMS頻度を有意に減少。<b>米国唯一のVMS適応承認</b>"},
+        {src:"SKYLIGHT 1（Lederman, 2023）",pmid:"36924778",point:"第3相RCT・フェゾリネタント。45mgで12週VMS頻度 LSM差 <b>−2.55（P<0.001）</b>"},
+        {src:"NAMS 非ホルモン療法 2023",pmid:"37252752",point:"ステートメント。<b>Level I：CBT・SSRI/SNRI・ガバペンチン・フェゾリネタント</b>"}
+      ],
+      distractors:`<p><b>B. 経腟エストロゲン</b> — <b>GSM（腟乾燥・性交痛・反復尿路症状）の局所治療</b>で全身吸収が低く、全身性VMSには無効。本例の主訴はGSMでない。<span class="bias">適応の取り違え／カテゴリーエラー</span></p>
+      <p><b>C. 経皮エストロゲン（最重要の誤答）</b> — 経皮は一次予防集団でVTEをほぼ上げない（OR 0.9–0.97）。だがそれは<b>「既往のない集団」のデータ</b>で、<b>特発性VTE既往例で経皮なら安全とする質の高いRCTは存在しない</b>。GLはVTE既往を経路を問わず禁忌/慎重投与。子宮温存例ではE単独で内膜保護もない。<span class="bias">「経皮なら安全」アンカリング／一般集団データの不当外挿</span></p>
+      <p><b>D. 経口結合型エストロゲン（CEE単独）</b> — ①子宮ありにE単独は子宮内膜癌リスク、②経口CEEはVTE・脳卒中が最も高い経路の一つ（Vinogradova CEE+MPA 2.10）。<span class="bias">二重の見落とし（子宮＋VTE）</span></p>
+      <p><b>E. 経皮E＋プロゲスチン併用（最も巧妙な誤答）</b> — 内膜保護と経路（経皮＝中立）を一見クリアするが、<b>特発性VTE既往の禁忌は解除されない</b>。プロゲスチン選択でVTEが上がる場合も（ESTHER：ノルプレグナン系 OR 3.9）。<span class="bias">合成バイアス（対策の積み上げで禁忌を回避できるという誤った安心）</span></p>`,
+      guideline:[
+        "<b>(1) 適応と禁忌</b>：適応＝中等度〜重度のVMS・GSM・早発卵巣不全・骨粗鬆症予防（他剤不適時）。禁忌＝<b>VTE/肺塞栓の既往・活動性、エストロゲン依存性腫瘍（乳癌・子宮内膜癌）、原因不明の性器出血、活動性肝疾患、冠動脈疾患/脳卒中既往、妊娠</b>。本例は特発性VTE既往に該当。",
+        "<b>(2) 投与経路とVTEリスク（図3a）</b>：経口CEE+MPAが最高（aOR 2.10）、経皮は中立（aOR 0.93）。だが<b>既往例では中立性が禁忌を解除しない</b>。",
+        "<b>(3) timing仮説</b>：ELITEは経口エストラジオールが閉経<6年で開始するとCIMT（頸動脈内膜中膜厚）の進展を抑制（≥10年で無効）。WHI 18年（Manson 2017, PMID 28898378）も50–59歳開始で死亡良好。<b>ただし禁忌のない患者に限る</b>。本例はtiming条件を満たすがVTE既往が優先。",
+        "<b>(4) 子宮の有無とプロゲスチン</b>：子宮あり→エストロゲン＋プロゲスチン併用が必須（子宮内膜癌の予防）。子宮摘出後→エストロゲン単独可。",
+        "<b>(5) 非ホルモン薬（NAMS 2023 Level I）</b>：SSRI（パロキセチン7.5mgは米国唯一のVMS適応薬）・SNRI（ベンラファキシン）・ガバペンチン（夜間・睡眠）・NK3拮抗薬フェゾリネタント（SKYLIGHTで12週VMS頻度 約−2.5、肝機能モニタ）。",
+        "<b>(6) 乳癌サバイバーとSSRIの選び方 ─ タモキシフェンとの相互作用（重要）</b>：<b>タモキシフェン</b>はエストロゲン受容体（ER）陽性乳癌の術後補助療法・予防に使う抗エストロゲン薬で、それ自体は効果の弱い<b>プロドラッグ</b>。肝の酵素<b>CYP2D6</b>で活性代謝物<b>エンドキシフェン</b>に変換されてはじめて十分に効く。<b>パロキセチン（およびフルオキセチン）は強力なCYP2D6阻害薬</b>で、併用するとエンドキシフェンが低下し<b>タモキシフェンの抗腫瘍効果が弱まる</b>おそれがある（パロキセチン併用が乳癌死の増加と関連した観察研究：Kelly 2010 BMJ／エンドキシフェン低下の機序：Stearns 2003）。乳癌サバイバーはHRTが使えずVMSにSSRI/SNRIを用いることが多いため、<b>タモキシフェン服用者では強いCYP2D6阻害薬（パロキセチン・フルオキセチン）を避け、CYP2D6阻害の弱いSSRI（エスシタロプラム・シタロプラム）やSNRI（ベンラファキシン）を選ぶ</b>。※本症例は乳癌もタモキシフェンもなく該当しないが、VMSにSSRIを使う際の基本的な注意点。"
+      ],
+      points:[
+        "<b>特発性VTE既往は全身HRTの禁忌</b>。経口・経皮を問わずVMS目的の全身HRT開始を正当化しない。",
+        "<b>「経皮＝VTE中立」のエビデンスは“既往のない集団”由来</b>。リスク中立≠禁忌の解除。",
+        "<b>子宮ありにE単独は禁忌（子宮内膜癌）</b>→プロゲスチン併用必須（子宮摘出後はE単独可）。",
+        "<b>経腟（局所）エストロゲンはGSM専用で全身VMSには無効</b>。",
+        "<b>HRT禁忌・忌避患者のVMS第一選択は非ホルモン療法（SSRI/SNRI）</b>（NAMS Level I）。",
+        "<b>timing仮説</b>はHRTを正当化しうるが<b>禁忌がない患者に限る</b>。",
+        "<b>タモキシフェン（ER陽性乳癌の抗エストロゲン薬）はCYP2D6で活性体エンドキシフェンに変換される</b>プロドラッグ。パロキセチン等の強いCYP2D6阻害薬は効果を減弱させうるため、タモキシフェン服用者のVMSには<b>弱いCYP2D6阻害のSSRI（エスシタロプラム）やSNRI（ベンラファキシン）</b>を選ぶ。"
+      ],
+      refs:[
+        "Rossouw JE, et al. Estrogen plus progestin in healthy postmenopausal women (WHI). JAMA. 2002;288(3):321-333. (PMID 12117397)",
+        "Anderson GL, et al. CEE in postmenopausal women with hysterectomy (WHI). JAMA. 2004;291(14):1701-1712. (PMID 15082697)",
+        "Manson JE, et al. MHT and long-term mortality (WHI). JAMA. 2017;318(10):927-938. (PMID 28898378)",
+        "Canonico M, et al. Route of estrogen and VTE (ESTHER). Circulation. 2007;115(7):840-845. (PMID 17309934)",
+        "Vinogradova Y, et al. HRT and VTE: nested case-control. BMJ. 2019;364:k4810. (PMID 30626577)",
+        "Rovinski D, et al. Oral vs non-oral HRT and VTE: SR/MA. Thromb Res. 2018;168:83-95. (PMID 29936403)",
+        "Hodis HN, et al. Early vs late postmenopausal estradiol (ELITE). N Engl J Med. 2016;374(13):1221-1231. (PMID 27028912)",
+        "Simon JA, et al. Low-dose paroxetine 7.5 mg for VMS. Menopause. 2013;20(10):1027-1035. (PMID 24045678)",
+        "Lederman S, et al. Fezolinetant for VMS (SKYLIGHT 1). Lancet. 2023;401(10382):1091-1102. (PMID 36924778)",
+        "The 2023 nonhormone therapy position statement of NAMS. Menopause. 2023;30(6):573-590. (PMID 37252752)",
+        "Kelly CM, et al. Selective serotonin reuptake inhibitors and breast cancer mortality in women receiving tamoxifen: population based cohort study. BMJ. 2010;340:c693. (PMID 20142325)",
+        "Stearns V, et al. Active tamoxifen metabolite plasma concentrations after coadministration of tamoxifen and paroxetine. J Natl Cancer Inst. 2003;95(23):1758-1764. (PMID 14652237)"
+      ]
+    }
+  },
+  /* ===================== Q4 (set1) ===================== */
+  {
+    dom:"小児・思春期", domEn:"PEDIATRICS", cat:["小児","感染症","公衆衛生・予防"], setId:"set1",
+    title:"脾摘後の肺炎球菌予防に最適なワクチン",
+    meta:"4 F · 診療所 · 遺伝性球状赤血球症で1年前に脾摘 · 脾摘後の肺炎球菌予防",
+    stem:`あなたは小児も診療する診療所に勤務している。4歳女児。乳児期から遺伝性球状赤血球症による貧血と黄疸を繰り返し、1年前（3歳時）に待機的脾摘術を受けた。術後は溶血が改善し、元気に保育園へ通っている。定期予防接種は月齢どおりに完了し、13価肺炎球菌結合型ワクチン（PCV13、プレベナー13®）も計4回接種済みである。発熱時の抗菌薬について指導は受けているが、脾摘後に追加すべきワクチンの説明は受けていない。体温36.7℃、活気良好で、咽頭発赤や皮疹はなく、腹部に手術瘢痕を認めるが脾は触知しない。脾摘後の重症肺炎球菌感染の予防として最も適切なのはどれか。`,
+    options:[
+      "接種を行わない",
+      "PCV13（プレベナー13®）の再接種",
+      "PPSV23（ニューモバックスNP®）の接種",
+      "PCV13（プレベナー13®）の毎年接種",
+      "PCV13（プレベナー13®）とPPSV23（ニューモバックスNP®）の同時接種"
+    ],
+    answer:2,
+    explain:{
+      core:`<p><b>無脾症＝莢膜形成菌（肺炎球菌・髄膜炎菌・Hib）による電撃的敗血症（OPSI）の最高リスク群</b>。脾臓は莢膜多糖体への抗体産生・IgM記憶B細胞・補体/オプソニン・血流中細菌の濾過を担い、これを失うと肺炎球菌を筆頭にOPSIの生涯リスクを負う（数時間で敗血症・DICへ進展、致死率が高い）。</p>
+      <p><b>なぜPPSV23の「上乗せ」が正答か</b>：結合型（PCV）はT細胞<b>依存性</b>で免疫記憶・ブースターを作り2歳未満でも有効、多糖体（PPSV23）はT細胞<b>非依存性</b>で記憶に乏しいが<b>PCV非含有の血清型を広くカバー</b>。戦略は「<b>まず結合型で記憶を作り、≥2歳でPPSV23を上乗せ</b>」。本児はPCV13完了済→必要なのは“再接種”でなく<b>未接種のPPSV23を≥8週あけて追加</b>（ACIP）。よって <b>C が正答</b>。</p>
+      <table>
+      <thead>
+      <tr class="header">
+      <th>特性</th>
+      <th>PCV13（結合型・プレベナー13®）</th>
+      <th>PPSV23（多糖体・ニューモバックスNP®）</th>
+      </tr>
+      </thead>
+      <tbody>
+      <tr class="odd">
+      <td>免疫の型</td>
+      <td>T細胞<b>依存性</b>（記憶・ブースター）</td>
+      <td>T細胞<b>非依存性</b>（記憶に乏しい）</td>
+      </tr>
+      <tr class="even">
+      <td>2歳未満の有効性</td>
+      <td>あり</td>
+      <td>乏しい</td>
+      </tr>
+      <tr class="odd">
+      <td>カバー血清型</td>
+      <td>13</td>
+      <td>23（PCV非含有の重要型を追加）</td>
+      </tr>
+      <tr class="even">
+      <td>反復接種</td>
+      <td>ブースター可</td>
+      <td>反復で低応答の懸念</td>
+      </tr>
+      </tbody>
+      </table>`,
+      fig:``,
+      evidence:[
+        {src:"ACIP小児（中核）：Nuorti & Whitney, MMWR 2010",pmid:"21150868",point:"基礎疾患児に<b>全PCV完了後にPPSV23</b>。無脾症は高リスク"},
+        {src:"ACIP接種間隔：Kobayashi, MMWR 2015",pmid:"26334788",point:"PCVとPPSV23の<b>間隔≥8週</b>・順序。同時接種は非推奨"},
+        {src:"IDSA免疫不全宿主：Rubin, CID 2014",pmid:"24311479",point:"無脾に肺炎球菌(PCV→PPSV23)・髄膜炎菌・Hib・年次インフル"},
+        {src:"英国無脾症GL（BCSH）：Davies, 2011",pmid:"21988145",point:"ワクチン束＋<b>予防内服</b>＋発熱時early antibiotics＋教育"},
+        {src:"OPSI疫学：Bisharat, 2001",pmid:"11798256",point:"脾摘後 感染 <b>3.2%</b>・死亡 <b>1.4%</b>、小児で高い"},
+        {src:"OPSI致死率：Goede, 2013",pmid:"23454566",point:"発症OPSIの<b>致死率30〜60%</b>"},
+        {src:"多糖体の低応答：Bröker, 2010",pmid:"20188306",point:"多糖体反復の <b>hyporesponsiveness</b>。結合型を優先"},
+        {src:"結合型が部分補償：Al-Mazrou, 2012",pmid:"22552602",point:"逐次戦略・間隔の理論的支持"}
+      ],
+      distractors:`<p><b>A. 接種しない</b> — 無脾症はOPSI最高リスク。PCV13完了だけではPCV非含有血清型に無防備。致死的だが低頻度のイベントを過小評価。<span class="bias">正常性バイアス</span><span class="bias">確率無視</span></p>
+      <p><b>B. PCV13再接種</b> — 同一結合型の再接種では追加血清型カバーが得られない。不足は<b>多糖体による血清型拡大</b>。<span class="bias">アンカリング</span></p>
+      <p><b>D. PCV13毎年接種</b> — PCVは毎年接種するワクチンでない（年次はインフル）。結合型は記憶を作りルーチン反復不要。<span class="bias">誤った類推</span></p>
+      <p><b>E. PCV13とPPSV23の同時接種</b> — 高リスク小児はPCV→PPSV23を<b>≥8週あけて逐次</b>。同時/近接は多糖体側の応答が減弱しうる。<span class="bias">premature closure</span></p>`,
+      guideline:[
+        "<b>(1) 包括的予防（図4b）</b>：OPSI予防は<b>(A) ワクチン束（肺炎球菌＋髄膜炎菌ACWY/B＋Hib＋年次インフル）、(B) 予防的抗菌薬、(C) 発熱時の早期対応・患者教育</b>の総合戦略。",
+        "<b>(2) 予防的抗菌薬</b>：ペニシリン系（小児はアモキシシリン／ペニシリンV）。術後早期・5歳未満でリスクが高い。本児（4歳・術後1年）は<b>継続が強く支持</b>される。",
+        "<b>(3) 発熱時early antibiotics＋教育</b>：無脾の発熱は緊急。<b>携行の経口抗菌薬（stand-by）を直ちに内服し受診</b>。メディカルアラート携行、動物咬傷（Capnocytophaga）・渡航マラリア/バベシアの説明。",
+        "<b>(4) 脾摘の時期とワクチン</b>：待機的脾摘は手術<b>≥2週前</b>に接種する。本児は術後1年経過＝現在の課題は未完のPPSV23（ニューモバックスNP®）を適切な間隔で追加すること。",
+        "<b>(5) 日本の実情</b>：PPSV23（ニューモバックスNP®）は添付文書上、脾摘患者の肺炎球菌予防が適応に含まれ、再接種は初回から<b>5年以上</b>あける（細目・自治体助成は<b>要確認</b>）。"
+      ],
+      points:[],
+      refs:[
+        "Nuorti JP, Whitney CG. Prevention of pneumococcal disease among infants and children — PCV13/PPSV23: ACIP. MMWR Recomm Rep. 2010;59(RR-11):1-18. (PMID 21150868)",
+        "Kobayashi M, et al. Intervals between PCV13 and PPSV23: ACIP. MMWR. 2015;64(34):944-947. (PMID 26334788)",
+        "Rubin LG, et al. 2013 IDSA guideline for vaccination of the immunocompromised host. Clin Infect Dis. 2014;58(3):e44-100. (PMID 24311479)",
+        "Davies JM, et al. Prevention and treatment of infection in patients with an absent/dysfunctional spleen. Br J Haematol. 2011;155(3):308-317. (PMID 21988145)",
+        "Bisharat N, et al. Risk of infection and death among post-splenectomy patients. J Infect. 2001;43(3):182-186. (PMID 11798256)",
+        "Goede JS, Siciliano DR. Splenectomised patients. Ther Umsch. 2013;70(3):185-188. (PMID 23454566)",
+        "Bröker M, Veitch K. Meningococcal vaccines: hyporesponsiveness. Travel Med Infect Dis. 2010;8(1):47-50. (PMID 20188306)",
+        "Al-Mazrou Y, et al. Immunogenicity after polysaccharide priming. Clin Vaccine Immunol. 2012;19(7):999-1004. (PMID 22552602)"
+      ]
+    }
+  },
+  /* ===================== Q5 (set1) ===================== */
+  {
+    dom:"高齢者（多剤併用）", domEn:"POLYPHARMACY", cat:["老年医学","薬剤・中毒"], setId:"set1",
+    title:"まず中止すべき薬剤はどれか",
+    meta:"84 F · 在宅 · 夜間徘徊・つじつま合わず・1か月で2回転倒 · 多剤併用",
+    stem:`あなたは在宅医療を行う診療所に勤務している。84歳女性。独居で、最近『夜間に家の中を歩き回り、つじつまの合わないことを言う』と娘が心配して連れて来た。この1か月で2回転倒している。高血圧でアムロジピン、不眠で数年来ロラゼパムとゾルピデム、過活動膀胱でオキシブチニン、胃部不快感で開始されたオメプラゾールを長期に内服している。新たな発熱・脱水や感染徴候はない。体温36.5℃、血圧134/78mmHg、起立性低血圧はなく、口腔内の乾燥を認める。改訂長谷川式スケール22点。神経学的な局所所見はない。血算・電解質・腎機能・血糖・甲状腺機能・尿検査に異常はなく、せん妄の身体的原因は乏しい。まず中止すべき薬剤はどれか。`,
+    options:[
+      "アムロジピン",
+      "オキシブチニン",
+      "オメプラゾール",
+      "ゾルピデム",
+      "ロラゼパム"
+    ],
+    answer:1,
+    explain:{
+      core:`<p>「<b>抗コリン薬の毒性＋ポリファーマシー＋処方カスケード</b>」の典型。過活動膀胱への<b>オキシブチニン</b>（中枢移行性の高い第3級アミン抗コリン薬）が、せん妄様言動・認知機能低下・転倒の最も是正可能な原因。</p>
+      <p>「まず中止すべき」＝<b>〈害への寄与の大きさ〉×〈直ちに・安全に（離脱なく）中止できるか〉</b>の積を最大化する薬剤。 - <b>害</b>：オキシブチニンは中枢移行が高く、せん妄・認知低下・口渇・便秘・尿閉。膀胱抗ムスカリン薬は用量依存的に認知症リスクを上げるクラス（Gray 2015、Coupland 2019）。Beers 2023・STOPP/START v3・国内STOPP-Jいずれも、認知機能障害・せん妄・転倒で抗コリン薬を回避。 - <b>中止の安全性</b>：オキシブチニンは<b>身体依存・離脱を作らない</b>＝即時に安全中止可。過活動膀胱は致死的緊急でなく、代替（β3作動薬ミラベグロン・膀胱訓練）がある。 - <b>対照的に</b>：<b>ロラゼパム（E）</b>＝長期連用ベンゾの急中止は離脱（痙攣・せん妄）を誘発→<b>漸減</b>で「即中止」でない。<b>ゾルピデム（D）</b>もZ薬で依存・離脱があり漸減。<b>アムロジピン（A）</b>＝OHなくせん妄/転倒の主因でない。<b>オメプラゾール（C）</b>＝緊急原因でなく漫然投与の見直し対象。</p>
+      <p>→ 「害が大きく、かつ離脱なく今すぐ安全に止められる」唯一が <b>B. オキシブチニン</b>（図5a）。</p>`,
+      fig:``,
+      evidence:[
+        {src:"AGS Beers Criteria 2023",pmid:"37139824",point:"抗コリン薬・ベンゾ・Z薬を<b>回避すべきPIM</b>（せん妄・認知・転倒で特に）"},
+        {src:"STOPP/START v3（O'Mahony, 2023）",pmid:"37256475",point:"190項目。抗コリン負荷・ベンゾ/Z薬・転倒リスク薬を体系的にPIM化"},
+        {src:"STOPP-J/日本老年医学会GL2015（Kojima, 2016）",pmid:"27594406",point:"抗コリン薬・三環系・第1世代抗ヒ薬・ベンゾ/Z薬・過活動膀胱抗コリン薬を収載"},
+        {src:"Gray 2015",pmid:"25621434",point:"抗コリン累積曝露と認知症の用量反応。最高曝露で <b>HR 1.54（1.21–1.96）</b>"},
+        {src:"Coupland 2019",pmid:"31233095",point:"強抗コリン薬で認知症 <b>OR 1.49（1.44–1.54）</b>、<b>膀胱抗ムスカリン薬 AOR 1.65</b>"},
+        {src:"EMPOWER（Tannenbaum, 2014）",pmid:"24733354",point:"患者教育で6か月<b>ベンゾ中止 27% vs 5%</b>、NNT=4"},
+        {src:"BZRA脱処方GL（Pottie, 2018）",pmid:"29760253",point:"<b>65歳以上はベンゾ/Z薬を「ゆっくり漸減」</b>して脱処方"},
+        {src:"Z薬と骨折（Richardson, 2021）",pmid:"33410736",point:"認知症高齢者でZ薬→骨折 <b>HR 1.40（1.01–1.94）</b>"},
+        {src:"STOPPFall（Seppala, 2021）",pmid:"33349863",point:"ロラゼパム・ゾルピデム・オキシブチニンは全て転倒リスク薬（FRIDs）"},
+        {src:"PPI脱処方GL（Farrell, 2017）",pmid:"28500192",point:"軽症GERD奏効例はPPIを減量/中止/オンデマンド化"},
+        {src:"OAB ミラベグロン vs 抗ムスカリン（Vecchioli, 2016）",pmid:"27092789",point:"有効性同等・ミラベグロンは忍容性良好"}
+      ],
+      distractors:`<p><b>A. アムロジピン</b> — OHなくCa拮抗薬はせん妄/転倒の主因でない。降圧の便益が大きく中止優先度は低い。<span class="bias">アンカリング</span></p>
+      <p><b>C. オメプラゾール</b> — 急性せん妄/転倒の原因でない。長期PPIは計画的脱処方対象だが緊急性なし。<span class="bias">可用性ヒューリスティック</span></p>
+      <p><b>D. ゾルピデム</b> — Z薬は常用量依存・離脱・骨折リスク薬。最終的に中止対象だが<b>漸減が原則</b>で「即時中止の第一手」でない。<span class="bias">代理/置換の誤り</span></p>
+      <p><b>E. ロラゼパム</b> — 害は大きいが、<b>長期連用ベンゾの急中止は離脱（痙攣・せん妄）を惹起</b>。正しくは<b>slow taper</b>。「主犯だから即全止」は誤り。<span class="bias">アクションバイアス</span></p>
+      <p><b>設問の罠はE</b>。「最も害が大きいから即中止」と選ばせる引力が強いが、臨床的に正しいのは「Eは即中止せず漸減開始、いま安全に即止められて害是正効果が大きいBを第一手で中止」。「害の大きさ」と「中止の安全性・即時性」を分けて評価できるかを問う。</p>`,
+      guideline:[
+        "<b>(1) PIMsの三本柱＋日本版</b>：AGS Beers 2023（米）、STOPP/START v3（欧、190項目）、<b>日本老年医学会GL2015＝STOPP-J</b>。本症例のB・D・Eはいずれも国内GL上の「特に慎重投与」対象。",
+        "<b>(2) 抗コリン負荷</b>：累積曝露と認知症の用量反応（Gray HR 1.54／Coupland OR 1.49、膀胱抗ムスカリン薬 AOR 1.65）。総抗コリン負荷を下げる＝オキシブチニン除去が最大の一手。",
+        "<b>(3) 転倒リスク薬（FRIDs）</b>：本症例のロラゼパム・ゾルピデム・オキシブチニンは全てFRIDs（STOPPFall）。",
+        "<b>(4) ベンゾ/Z薬の脱処方と離脱</b>：漸減で中止率改善・重大有害事象なし（EMPOWER NNT=4）。<b>急中止は離脱（痙攣・せん妄）</b>＝「即中止」してはならない理由（Pottie 2018）。Z薬は骨折リスク（Richardson 2021）。",
+        "<b>(5) 代替治療を準備</b>：不眠＝CBT-I/オレキシン受容体拮抗薬（レンボレキサント/スボレキサント）、OAB＝ミラベグロン/膀胱訓練。出口戦略があると漸減が成功しやすい。"
+      ],
+      points:[],
+      refs:[
+        "2023 AGS Beers Criteria Update Expert Panel. AGS 2023 updated Beers Criteria. J Am Geriatr Soc. 2023;71(7):2052-2081. (PMID 37139824)",
+        "O'Mahony D, et al. STOPP/START criteria version 3. Eur Geriatr Med. 2023;14(4):625-632. (PMID 37256475)",
+        "Kojima T, et al. STOPP-J / Japanese guideline. Geriatr Gerontol Int. 2016;16(9):983-1001. (PMID 27594406)",
+        "Gray SL, et al. Cumulative anticholinergics and incident dementia. JAMA Intern Med. 2015;175(3):401-407. (PMID 25621434)",
+        "Coupland CAC, et al. Anticholinergic exposure and dementia. JAMA Intern Med. 2019;179(8):1084-1093. (PMID 31233095)",
+        "Tannenbaum C, et al. Reduction of inappropriate benzodiazepines (EMPOWER). JAMA Intern Med. 2014;174(6):890-898. (PMID 24733354)",
+        "Pottie K, et al. Deprescribing benzodiazepine receptor agonists: guideline. Can Fam Physician. 2018;64(5):339-351. (PMID 29760253)",
+        "Richardson K, et al. Z-drug use in people with dementia and fracture. Health Technol Assess. 2021;25(1):1-202. (PMID 33410736)",
+        "Seppala LJ, et al. STOPPFall. Age Ageing. 2021;50(4):1189-1199. (PMID 33349863)",
+        "Farrell B, et al. Deprescribing proton pump inhibitors: guideline. Can Fam Physician. 2017;63(5):354-364. (PMID 28500192)",
+        "Vecchioli Scaldazza C, Morosetti C. Solifenacin vs mirabegron in OAB. Urol Int. 2016;97(3):325-329. (PMID 27092789)"
+      ]
+    }
+  },
   /* ===================== Q6 ===================== */
   {
-    dom:"⑦ メンタルヘルス", domEn:"⑦ MENTAL", cat:["精神","内分泌・代謝","薬剤・中毒"], setId:"set2",
+    dom:"メンタルヘルス", domEn:"MENTAL", cat:["精神","内分泌・代謝","薬剤・中毒"], setId:"set2",
     title:"最も適切な対応はどれか",
     meta:"62 F · 外来 · 双極I型でリチウム長期 · 偶発的高Ca",
     stem:`あなたは診療所で外来を担当している。62歳女性。数か月前からの倦怠感・口渇・多尿で受診。健診の血液検査で高カルシウム血症を指摘された。食欲は保たれ、体重減少・骨痛・便秘はない。既往に双極I型障害（14年前発症）・脂質異常症・高血圧・2型糖尿病があり、炭酸リチウム・アトルバスタチン・アムロジピン・メトホルミンを長年内服している。気分は安定している。血圧132/78mmHg、脈拍72/分。頸部腫瘤は触知せず、身体所見に明らかな異常はない。血液検査で補正Ca 11.4mg/dL（6か月前は10.2）、P 2.4mg/dL、25(OH)D充足、eGFR 52mL/分/1.73m²（5年前78）、TSH 7.4μU/mL（FT4正常下限）、intact PTH 78pg/mL、リチウム血中濃度0.8mEq/L（治療域内）。`,
@@ -93,7 +486,7 @@ const QUESTIONS = [
 
   /* ===================== Q7 ===================== */
   {
-    dom:"⑧ 急性疾患・救急", domEn:"⑧ EMERGENCY", cat:["救急","アレルギー","循環器"], setId:"set2",
+    dom:"急性疾患・救急", domEn:"EMERGENCY", cat:["救急","アレルギー","循環器"], setId:"set2",
     title:"次に行う最も適切な対応はどれか",
     meta:"68 M · 救急 · カルベジロール内服 · 筋注×2＋持続静注に不応",
     stem:`あなたは救急外来を担当している。68歳男性。庭仕事中にハチに刺された数分後から全身蕁麻疹・喘鳴・呼吸困難・ふらつきで搬入。慢性心不全でカルベジロールとACE阻害薬を内服。来院後、あなたの指示でアドレナリン0.3〜0.5mg筋注を5分間隔で2回、高流量酸素、仰臥位＋下肢挙上、等張晶質液1,000mLを急速静注2回、さらにアドレナリン持続静注を開始・増量。にもかかわらず BP72/40、心拍122/分、SpO₂90%（リザーバー10L）、意識もうろう、両肺に呼気性喘鳴が持続。咽頭浮腫・吸気性喘鳴はなく気道閉塞の進行なし。`,
@@ -160,7 +553,7 @@ const QUESTIONS = [
 
   /* ===================== Q8 ===================== */
   {
-    dom:"⑨ 整形・骨代謝", domEn:"⑨ ORTHO", cat:["整形・骨代謝","内分泌・代謝"], setId:"set2",
+    dom:"整形・骨代謝", domEn:"ORTHO", cat:["整形・骨代謝","内分泌・代謝"], setId:"set2",
     title:"最も適切な初期治療はどれか",
     meta:"74 F · 外来 · 直近椎体骨折＋既存大腿骨頸部骨折 · 二次性は陰性",
     stem:`74歳女性。腰背部痛で受診。3か月前に軽微な外力で第12胸椎圧迫骨折、1年前に右大腿骨頸部骨折（人工骨頭挿入術）。身長は数年で約4cm低下。DXA 腰椎 Tスコア −3.4、大腿骨頸部 −3.2。二次性骨粗鬆症の検索（血算・補正Ca・P・ALP・Cr/eGFR・25(OH)D〔補充後充足〕・intact PTH・TSH・血清/尿蛋白電気泳動・遊離軽鎖）はいずれも正常で、クッシング・甲状腺機能亢進・性腺機能低下・骨軟化症も否定的。過去1年以内に心筋梗塞・脳卒中なし、活動性悪性腫瘍なし、ステロイド長期使用なし。`,
@@ -219,6 +612,179 @@ const QUESTIONS = [
         "Leder BZ, et al. Denosumab and teriparatide transitions (DATA-Switch). Lancet. 2015;386(9999):1147-1155. (PMID 26144908)",
         "Cummings SR, et al. Vertebral fractures after discontinuation of denosumab. J Bone Miner Res. 2018;33(2):190-198. (PMID 29105841)",
         "Eastell R, et al. Pharmacological Management of Osteoporosis: Endocrine Society Guideline Update. J Clin Endocrinol Metab. 2020;105(3):dgaa048. (PMID 32068863)"
+      ]
+    }
+  },
+  /* ===================== Q9 (set2) ===================== */
+  {
+    dom:"緩和ケア", domEn:"OPIOID", cat:["緩和ケア","薬剤・中毒"], setId:"set2",
+    title:"最も適切なオピオイドはどれか",
+    meta:"68 M · 在宅 · 進行肺癌骨転移痛 · eGFR22（非透析）",
+    stem:`あなたは緩和ケアも行う診療所で在宅医療を担当している。68歳男性。進行非小細胞肺癌の多発骨転移（胸椎・骨盤）による持続的な腰背部痛があり、アセトアミノフェンとNSAIDではコントロールが不十分でオピオイドの導入を予定している。糖尿病性腎症による慢性腎臓病があり、eGFRは22mL/min/1.73m²で、血液透析は受けていない。せん妄や呼吸抑制の既往はなく、現在の意識は清明。便秘がある。痛みはNRS 7/10で骨転移痛が主体、安静時にも持続する。体温36.5℃、血圧126/74mmHg。最も適切なオピオイドはどれか。`,
+    options:[
+      "モルヒネ",
+      "コデイン",
+      "オキシコドン",
+      "フェンタニル",
+      "トラマドール"
+    ],
+    answer:3,
+    explain:{
+      core:`<p>本症例の核心は「eGFR 22（CKD G4・非透析）で、活性代謝物が腎排泄されないオピオイドを選ぶ」点。フェンタニルは肝CYP3A4で<b>ほぼ不活性な代謝物（ノルフェンタニル）</b>に代謝され、活性代謝物の腎蓄積が乏しいため腎不全で相対的に最も安全。</p>
+      <table>
+      <thead>
+      <tr class="header">
+      <th>オピオイド</th>
+      <th>主要代謝物（活性/不活性）</th>
+      <th>腎での蓄積</th>
+      <th>腎不全での評価</th>
+      </tr>
+      </thead>
+      <tbody>
+      <tr class="odd">
+      <td><b>モルヒネ</b></td>
+      <td><b>M6G（活性・強力）</b>、M3G（神経興奮性）</td>
+      <td>強く依存・著明に蓄積</td>
+      <td><b>避ける</b>（傾眠・呼吸抑制・ミオクローヌス・せん妄）</td>
+      </tr>
+      <tr class="even">
+      <td><b>コデイン</b></td>
+      <td>→モルヒネ→M6G/M3G</td>
+      <td>蓄積（＋CYP2D6多型で予測不能）</td>
+      <td><b>避ける</b></td>
+      </tr>
+      <tr class="odd">
+      <td><b>オキシコドン</b></td>
+      <td>ノルオキシコドン、オキシモルフォン（活性）</td>
+      <td>蓄積しうる</td>
+      <td><b>要注意</b>（減量・延長で第二選択）</td>
+      </tr>
+      <tr class="even">
+      <td><b>トラマドール</b></td>
+      <td>M1（活性）</td>
+      <td>蓄積</td>
+      <td><b>避ける</b>（痙攣・セロトニン作用）</td>
+      </tr>
+      <tr class="odd">
+      <td><b>フェンタニル</b></td>
+      <td>ノルフェンタニル（実質不活性）</td>
+      <td>乏しい</td>
+      <td><b>第一選択</b>（少量から）</td>
+      </tr>
+      <tr class="even">
+      <td>ヒドロモルフォン</td>
+      <td>H3G（神経興奮性）</td>
+      <td>蓄積</td>
+      <td>要注意（第二選択）</td>
+      </tr>
+      <tr class="odd">
+      <td>メサドン/ブプレノルフィン</td>
+      <td>活性代謝物に乏しい/限定的</td>
+      <td>腎依存小（糞便・胆汁排泄）</td>
+      <td>比較的安全</td>
+      </tr>
+      </tbody>
+      </table>
+      <p><b>まとめ</b>：避ける＝モルヒネ・コデイン・トラマドール／減量で許容＝オキシコドン・ヒドロモルフォン／望ましい＝<b>フェンタニル</b>・ブプレノルフィン・メサドン。<b>透析の有無で変わる</b>：血液透析患者ではフェンタニルは不適とされブプレノルフィンが第一選択候補（Coluzzi 2020）。本症例は<b>非透析</b>なのでフェンタニルで矛盾しない。</p>`,
+      fig:``,
+      evidence:[
+        {src:"EAPC オピオイドGL（Caraceni 2012）",pmid:"22300860",point:"GRADEベースの中核GL。腎障害・スイッチング・神経障害性疼痛・便秘/悪心を体系化"},
+        {src:"腎障害×オピオイド SR（King 2011）",pmid:"21708859",point:"RCTは皆無・エビデンスはvery low。代謝物の活性/蓄積でリスク層別。<b>フェンタニル・アルフェンタニル・メサドンが最も害が少ない／モルヒネは毒性</b>"},
+        {src:"CKD/HDのオピオイド総説（Coluzzi 2020）",pmid:"32982255",point:"<b>モルヒネ・コデインは非推奨</b>、オキシコドン/ヒドロモルフォンは要減量、<b>CKDではフェンタニル/ブプレノルフィンが第一選択候補（透析中はフェンタニル不可）</b>。ナルデメジンはCKD/HDで用量調整不要"},
+        {src:"非透析CKDの症状管理（Murtagh 2006）",pmid:"16898102",point:"WHOラダーにパラセタモール/トラマドール/<b>フェンタニル</b>が最適、<b>モルヒネは代謝物蓄積で非推奨</b>"},
+        {src:"M6Gの薬理（Frances 1992）",pmid:"1320685",point:"<b>M6Gはモルヒネより強力なμ作動</b>（動物 i.c.v.）。蓄積時の毒性の薬理学的裏付け"},
+        {src:"M3Gの神経興奮（Doyle 2017）",pmid:"29199028",point:"<b>M3GはTLR4を介し神経炎症</b>を惹起し鎮痛に拮抗"},
+        {src:"JSPMがん疼痛GL（英文記載, Mawatari 2022）",pmid:"35363057",point:"日本緩和医療学会GLの英文サマリ（35推奨）"},
+        {src:"換算比のスコーピングレビュー（Davis 2024）",pmid:"39046534",point:"<b>換算比はエビデンスの質が低くばらつく</b>＝スイッチングは保守的換算＋再評価"}
+      ],
+      distractors:`<p><b>モルヒネ</b> — 活性代謝物 <b>M6G（強力なμ作動）・M3G（神経興奮性）が腎排泄依存</b>でeGFR22では著明に蓄積し、傾眠・呼吸抑制・ミオクローヌス・せん妄。明確に非推奨。<span class="bias">availability bias（「がん疼痛＝まずモルヒネ」）</span><span class="bias">default bias</span></p>
+      <p><b>コデイン</b> — CYP2D6で<b>モルヒネへ代謝</b>＝同じ問題。多型で効果・毒性が予測不能。中等度〜高度痛に力価不足。<span class="bias">代表性ヒューリスティック（「弱オピオイド＝安全」）</span></p>
+      <p><b>オキシコドン</b> — 活性代謝物（オキシモルフォン）・親化合物が腎で蓄積しうる。減量・間隔延長で使える第二選択だが、活性代謝物を持つ点でフェンタニルに劣る。<span class="bias">anchoring</span><span class="bias">確証バイアス</span></p>
+      <p><b>トラマドール</b> — 親化合物・M1が腎排泄で蓄積。<b>痙攣閾値低下＋セロトニン作用</b>（SSRI/SNRI併用で症候群リスク）。高度痛に力価不足。<span class="bias">availability bias</span><span class="bias">commission bias</span></p>`,
+      guideline:[
+        "<b>がん疼痛の基本</b>：WHO三段階（非オピオイド→弱→強）、by the clock（定時）。本例は中等度〜高度痛で<b>強オピオイドから開始</b>。EAPC 2012の一般則（経口モルヒネ/オキシコドン/ヒドロモルフォン）を<b>腎障害で上書き</b>し代謝物の少ないオピオイドを選ぶ。",
+        "<b>腎機能別選択</b>：非透析eGFR22＝フェンタニル第一選択（ブプレノルフィン・メサドンも可）／血液透析＝ブプレノルフィン第一選択（フェンタニル不適）。",
+        "<b>導入・調整</b>：少量から漸増（start low, go slow）、<b>レスキュー＝定時1日量の約1/6</b>、貼付剤は発現が緩徐なので速放性レスキュー併用。毒性（傾眠・ミオクローヌス・呼吸抑制・せん妄・痛覚過敏）出現時は減量/間隔延長/<b>スイッチング</b>。換算比はエビデンスが弱く（Davis 2024）保守的に減量し再評価。",
+        "<b>有害事象対策</b>：便秘は予防的緩下薬＋難治例にPAMORA（<b>ナルデメジンはCKD/HDで用量調整不要</b>）、悪心は短期制吐薬、神経障害性疼痛にガバペンチノイド（<b>腎機能に応じ大幅減量</b>）。骨転移痛には<b>放射線治療・骨修飾薬</b>も併用。"
+      ],
+      points:[],
+      refs:[
+        "Caraceni A, et al. Use of opioid analgesics in cancer pain: EAPC recommendations. Lancet Oncol. 2012;13(2):e58-68. (PMID 22300860)",
+        "King S, et al. Opioids for cancer pain with renal impairment: SR (EAPC). Palliat Med. 2011;25(5):525-52. (PMID 21708859)",
+        "Coluzzi F, et al. Safe Use of Opioids in CKD and Hemodialysis Patients. Ther Clin Risk Manag. 2020;16:821-837. (PMID 32982255)",
+        "Murtagh FEM, et al. Symptom management in established renal failure managed without dialysis. EDTNA ERCA J. 2006;32(2):93-8. (PMID 16898102)",
+        "Frances B, et al. Morphine-6β-glucuronide is a more potent opioid agonist than morphine. J Pharmacol Exp Ther. 1992;262(1):25-31. (PMID 1320685)",
+        "Doyle HH, Murphy AZ. Influences of morphine metabolites on pain sensitivity. Physiol Behav. 2017;187:32-41. (PMID 29199028)",
+        "Mawatari H, et al. JSPM cancer pain pharmacotherapy guidelines (revision). J Palliat Med. 2022;25(7):1095-1114. (PMID 35363057)",
+        "Davis MP, et al. Opioid dose/route conversion ratio studies: scoping review. Support Care Cancer. 2024;32(8):542. (PMID 39046534)"
+      ]
+    }
+  },
+  /* ===================== Q10 (set2) ===================== */
+  {
+    dom:"医療制度（介護保険）", domEn:"LTC", cat:["医療制度","老年医学"], setId:"set2",
+    title:"介護保険の利用可否（特定疾病）",
+    meta:"58 M · 在宅 · 膵癌多発肝転移（末期）· ADL低下で在宅療養希望",
+    stem:`あなたは在宅療養支援診療所で外来・訪問診療を担当している。58歳男性。会社員。膵癌の多発肝転移と診断され、化学療法を行ったが効果なく、主治医から積極的抗がん治療の適応はないと説明された。全身倦怠感と食思不振で日常生活動作が低下し、入浴や移動に介助を要するようになったため、自宅での療養を希望している。妻と二人暮らしで、被用者保険（健康保険）に加入している。身体障害者手帳は未取得で、生活保護は受けていない。在宅サービス導入のため、介護保険の利用について相談された。最も適切なのはどれか。`,
+    options:[
+      "65歳未満のため利用できない",
+      "特定疾病に該当し申請できる",
+      "身体障害者手帳が必要である",
+      "生活保護の受給が条件である",
+      "要介護認定は不要である"
+    ],
+    answer:1,
+    explain:{
+      core:`<p>58歳＝介護保険の<b>第2号被保険者</b>（40〜64歳の医療保険加入者）。第2号は<b>要介護・要支援の原因が「特定疾病」による場合に限り</b>給付を受けられる（介護保険法第7条、施行令第2条）。膵癌の多発肝転移で抗がん治療の適応がない状態は、特定疾病の第1号「<b>がん（医師が一般に認められている医学的知見に基づき回復の見込みがない状態に至ったと判断したものに限る）</b>」＝末期がんに該当。したがって<b>65歳未満でも要介護認定を申請でき、介護サービスを利用できる</b>（正答B）。</p>
+      <table>
+      <thead>
+      <tr class="header">
+      <th>項目</th>
+      <th>第1号被保険者</th>
+      <th>第2号被保険者</th>
+      </tr>
+      </thead>
+      <tbody>
+      <tr class="odd">
+      <td>年齢</td>
+      <td>65歳以上</td>
+      <td>40歳以上65歳未満</td>
+      </tr>
+      <tr class="even">
+      <td>要件</td>
+      <td>当該市町村の住民</td>
+      <td><b>医療保険加入者</b>であること</td>
+      </tr>
+      <tr class="odd">
+      <td>給付の条件</td>
+      <td>原因を問わず要支援・要介護なら可</td>
+      <td><b>特定疾病（16種）が原因</b>の場合に限る</td>
+      </tr>
+      <tr class="even">
+      <td>本症例(58歳・末期がん)</td>
+      <td>該当しない</td>
+      <td><b>該当（特定疾病=がん末期）→申請可</b></td>
+      </tr>
+      </tbody>
+      </table>
+      <p><b>16特定疾病（施行令第2条）</b>：①がん（末期）②関節リウマチ ③ALS ④後縦靱帯骨化症 ⑤骨折を伴う骨粗鬆症 ⑥初老期認知症 ⑦パーキンソン病関連疾患 ⑧脊髄小脳変性症 ⑨脊柱管狭窄症 ⑩早老症 ⑪多系統萎縮症 ⑫糖尿病性神経障害・腎症・網膜症 ⑬脳血管疾患 ⑭閉塞性動脈硬化症 ⑮COPD ⑯両側の膝/股関節の著しい変形性関節症。「がん（末期）」は<b>平成18（2006）年4月</b>に追加。</p>`,
+      fig:``,
+      evidence:[],
+      distractors:`<p><b>A. 65歳未満のため利用できない</b> — ×。40〜64歳でも第2号被保険者として特定疾病が原因なら利用可。本例は末期がんに該当。「介護保険＝65歳以上」のイメージが誤解の背景（<b>対象外は39歳以下</b>）。</p>
+      <p><b>C. 身体障害者手帳が必要</b> — ×。介護保険利用に手帳は<b>不要</b>。手帳は身体障害者福祉法の別制度。入口は「要介護認定＋（第2号なら）特定疾病該当」。</p>
+      <p><b>D. 生活保護の受給が条件</b> — ×。所得・生活保護の有無を問わない社会保険。むしろ40〜64歳で医療保険未加入だと第2号にならず、介護は生活保護の「介護扶助」で給付。</p>
+      <p><b>E. 要介護認定は不要</b> — ×。給付には<b>要介護（要支援）認定が必須</b>。末期がんで急を要する場合は暫定ケアプランで<b>認定前から開始可</b>だが、認定が不要になるわけではない。</p>`,
+      guideline:[
+        "<b>関連知識（家庭医に必須の制度横断）</b>：末期がんの在宅療養は、介護保険・医療保険・麻薬・福祉制度を組み合わせる。介護保険（訪問介護・福祉用具・ショートステイ等）＝介護ベッド・車椅子、身体介護、レスパイト（第2号は特定疾病該当が前提、区分支給限度額あり）。",
+        "<b>訪問看護</b>：末期がんは<b>「厚労大臣が定める疾病等（別表第7）」に該当→医療保険の訪問看護</b>が適用、頻回・複数回訪問が可能。<b>がん末期では訪問看護は医療保険優先</b>で介護保険限度額を消費しない（重要）。",
+        "<b>訪問診療・往診</b>：在宅での定期診療・急変時往診・看取り（医療保険から給付）。<b>医療用麻薬</b>：がん疼痛コントロール（麻薬施用者免許・保管/廃棄ルール）。",
+        "<b>身体障害者手帳・障害福祉</b>：該当機能障害があれば取得可だが<b>介護保険利用の条件ではない</b>（重複時は介護保険優先）。<b>高額療養費／高額医療・高額介護合算</b>：自己負担を所得区分の上限まで軽減（限度額適用認定証の事前取得）。<b>生活保護（介護扶助・医療扶助）</b>：困窮し他制度で賄えない場合（<b>受給は介護保険利用の条件ではない</b>）。",
+        "<b>家庭医の実務</b>：早期に<b>要介護認定を申請</b>／主治医意見書に<b>特定疾病名（末期がん）と急変見込み</b>を記載／<b>訪問看護は医療保険を活用</b>（別表第7該当で介護保険の区分支給限度額を消費しない）／福祉用具・身体介護は<b>介護保険</b>を利用／<b>高額療養費・高額医療/高額介護合算</b>で経済的負担を軽減／状態悪化時は<b>区分変更申請</b>を行う。"
+      ],
+      points:[],
+      refs:[
+        "要確認（PubMed非収載・国内制度）：介護保険法および厚生労働省関連告示・通知（第2号被保険者の16特定疾病、別表第7「厚生労働大臣が定める疾病等」による医療保険の訪問看護、暫定ケアプラン、高額医療・高額介護合算療養費）。対象疾病・自己負担割合・支給限度額は最新の告示で確認する。",
+        "要確認：自治体ごとの運用（暫定ケアプランの取扱い・助成）は各保険者で確認。"
       ]
     }
   }
