@@ -85,7 +85,19 @@ const QUESTIONS = [
 </tr>
 </tbody>
 </table>`,
-      fig:``,
+      fig:`<figure class="qfig"><svg viewBox="0 0 900 300" xmlns="http://www.w3.org/2000/svg" font-family="Inter, 'Noto Sans JP', sans-serif">
+<rect x="0" y="0" width="900" height="300" fill="#0d0f12"/>
+<text x="450" y="32" text-anchor="middle" font-size="20" font-weight="700" fill="#e9eaee">リツキシマブ周期とワクチン接種の最適な窓</text>
+<rect x="20" y="60" width="185" height="68" rx="10" fill="#13161b" stroke="#2a2e38" stroke-width="1.5"/><text x="112" y="90" text-anchor="middle" font-size="14" fill="#c8cad3">最終リツキシマブ</text><text x="112" y="110" text-anchor="middle" font-size="14" fill="#c8cad3">投与</text>
+<text x="218" y="99" text-anchor="middle" font-size="20" fill="#5a5f6d">→</text>
+<rect x="232" y="60" width="195" height="68" rx="10" fill="#15132a" stroke="#7c6cff" stroke-width="1.5"/><text x="329" y="90" text-anchor="middle" font-size="14" fill="#b1a6ff">約6か月後</text><text x="329" y="110" text-anchor="middle" font-size="13.5" fill="#c8cad3">B細胞が回復</text>
+<text x="440" y="99" text-anchor="middle" font-size="20" fill="#5a5f6d">→</text>
+<rect x="454" y="60" width="200" height="68" rx="10" fill="#0f231c" stroke="#34d399" stroke-width="2"/><text x="554" y="88" text-anchor="middle" font-size="14.5" font-weight="700" fill="#34d399">ワクチン接種</text><text x="554" y="110" text-anchor="middle" font-size="13" fill="#c8cad3">＝次回投与の前</text>
+<text x="666" y="86" text-anchor="middle" font-size="12" fill="#8a8e99">≥2週</text><text x="666" y="108" text-anchor="middle" font-size="20" fill="#5a5f6d">→</text>
+<rect x="682" y="60" width="198" height="68" rx="10" fill="#13161b" stroke="#2a2e38" stroke-width="1.5"/><text x="781" y="99" text-anchor="middle" font-size="14" fill="#c8cad3">次回リツキシマブ</text>
+<rect x="20" y="156" width="425" height="120" rx="10" fill="#0f231c" stroke="#34d399" stroke-width="1.5"/><text x="40" y="184" font-size="15" font-weight="700" fill="#34d399">◯ 非生ワクチン（接種可）</text><text x="40" y="210" font-size="13.5" fill="#c8cad3">結合型PCV20・組換え帯状疱疹（シングリックス）</text><text x="40" y="232" font-size="13.5" fill="#c8cad3">不活化インフルエンザ・mRNA新型コロナ</text><text x="40" y="258" font-size="12.5" fill="#8a8e99">免疫抑制下でも安全（応答は減弱しうる）</text>
+<rect x="455" y="156" width="425" height="120" rx="10" fill="#241318" stroke="#fb7185" stroke-width="1.5"/><text x="475" y="184" font-size="15" font-weight="700" fill="#fb7185">✗ 生ワクチン（禁忌）</text><text x="475" y="210" font-size="13.5" fill="#c8cad3">生帯状疱疹・水痘・MMR・BCG</text><text x="475" y="232" font-size="13.5" fill="#c8cad3">経鼻弱毒生インフルエンザ（フルミスト）</text><text x="475" y="258" font-size="12.5" fill="#8a8e99">B細胞枯渇・ステロイド下では不可</text>
+</svg><figcaption>図. リツキシマブは最終投与後約6か月でB細胞が回復した時期（＝次回投与の前）に非生ワクチンを接種し、接種後は次回投与を2週以上あける。生ワクチンは禁忌。</figcaption></figure>`,
       evidence:[
         {src:"ACR 2022 ワクチンGL（Bass）",pmid:"36597810",point:"休薬・接種前倒しで免疫原性を最大化"},
         {src:"EULAR 2019更新（Furer）",pmid:"31413005",point:"非生は治療下でも安全。<b>可能なら免疫抑制開始前</b>に"},
@@ -149,7 +161,18 @@ const QUESTIONS = [
       core:`<p>本症例は「<b>85歳・要介護1・反復転倒・起立時失神</b>」のフレイル像で、<b>症候性の起立性低血圧（OH）</b>を呈する。まず行うべきは<b>原因となりうる降圧薬の減量（脱処方）</b>。</p>
 <p>OHの定義（Freeman 2011）＝<b>起立後3分以内にSBP↓≥20 または DBP↓≥10mmHg</b>。本例はSBP −38mmHg＋立ちくらみ・失神既往＝<b>症候性OH</b>（無症候性OHとは管理が決定的に異なる）。</p>
 <p><b>降圧薬減量が第一選択である理由</b>：(1) 高齢者OHの最も是正可能な原因は薬剤性で、Ca拮抗薬（アムロジピン）・ARB（テルミサルタン）はOHを助長。OH/転倒管理は「<b>まず原因薬の見直し</b>」から（STOPPFall）。(2) <b>糖尿病・脳心血管疾患がなく</b>臥位148/80と著明高値でない＝厳格降圧の積極的適応がない。厳格降圧の利益（SPRINT, STEP）は<b>自立・非フレイル</b>例のもので、反復転倒・失神の要介護例に外挿できない。(3) フレイル＋低SBP＋多剤は死亡と関連（PARTAGE：SBP&lt;130＋≥2剤で2年死亡 <b>adj HR 1.78</b>）。(4) 減薬は安全（OPTIMISE：80歳以上で1剤減でも12週の血圧管理が<b>非劣性</b>、SBP差+3.4mmHg）。</p>`,
-      fig:``,
+      fig:`<figure class="qfig"><svg viewBox="0 0 900 340" xmlns="http://www.w3.org/2000/svg" font-family="Inter, 'Noto Sans JP', sans-serif">
+<rect x="0" y="0" width="900" height="340" fill="#0d0f12"/>
+<text x="450" y="30" text-anchor="middle" font-size="19" font-weight="700" fill="#e9eaee">起立性低血圧の管理順序と「厳格降圧が及ぶ／及ばない」集団</text>
+<rect x="20" y="50" width="270" height="74" rx="10" fill="#15132a" stroke="#7c6cff" stroke-width="2"/><text x="155" y="78" text-anchor="middle" font-size="14.5" font-weight="700" fill="#b1a6ff">① 原因薬の見直し（最優先）</text><text x="155" y="104" text-anchor="middle" font-size="13" fill="#c8cad3">Ca拮抗薬・ARBを減量／脱処方</text>
+<text x="300" y="92" text-anchor="middle" font-size="20" fill="#5a5f6d">→</text>
+<rect x="315" y="50" width="270" height="74" rx="10" fill="#13161b" stroke="#2a2e38" stroke-width="1.5"/><text x="450" y="78" text-anchor="middle" font-size="14.5" font-weight="700" fill="#e9eaee">② 非薬物</text><text x="450" y="104" text-anchor="middle" font-size="12.5" fill="#c8cad3">ゆっくり起立・弾性ストッキング・水分/塩分</text>
+<text x="595" y="92" text-anchor="middle" font-size="20" fill="#5a5f6d">→</text>
+<rect x="610" y="50" width="270" height="74" rx="10" fill="#231c10" stroke="#fbbf24" stroke-width="1.5"/><text x="745" y="78" text-anchor="middle" font-size="14.5" font-weight="700" fill="#fbbf24">③ 難治例に薬物</text><text x="745" y="104" text-anchor="middle" font-size="13" fill="#c8cad3">ミドドリン／フルドロコルチゾン</text>
+<text x="450" y="164" text-anchor="middle" font-size="14.5" font-weight="700" fill="#e9eaee">厳格降圧の利益は「自立度・フレイル」で変わる</text>
+<rect x="20" y="182" width="425" height="140" rx="10" fill="#0f231c" stroke="#34d399" stroke-width="1.5"/><text x="40" y="210" font-size="15" font-weight="700" fill="#34d399">◯ 利益が及ぶ</text><text x="40" y="236" font-size="13.5" fill="#c8cad3">自立・非フレイルの高齢者</text><text x="40" y="260" font-size="13.5" fill="#c8cad3">SPRINT≥75：心血管 HR 0.66</text><text x="40" y="284" font-size="13.5" fill="#c8cad3">外傷性転倒は増えず</text><text x="40" y="308" font-size="12.5" fill="#8a8e99">→ 厳格降圧を目指す</text>
+<rect x="455" y="182" width="425" height="140" rx="10" fill="#241318" stroke="#fb7185" stroke-width="1.5"/><text x="475" y="210" font-size="15" font-weight="700" fill="#fb7185">✗ 及ばない（本例）</text><text x="475" y="236" font-size="13.5" fill="#c8cad3">要介護・反復転倒・症候性OH・多剤</text><text x="475" y="260" font-size="13" fill="#c8cad3">PARTAGE：SBP&lt;130＋≥2剤で死亡 HR 1.78</text><text x="475" y="284" font-size="13.5" fill="#c8cad3">85歳・要介護1・起立時失神</text><text x="475" y="308" font-size="12.5" fill="#8a8e99">→ まず降圧薬を減量</text>
+</svg><figcaption>図. 起立性低血圧はまず原因薬の見直しから。厳格降圧の利益は自立・非フレイル例のもので、要介護・反復転倒・症候性OHの本例には外挿できない。</figcaption></figure>`,
       evidence:[
         {src:"OPTIMISE（Sheppard, 2020）",pmid:"32453368",point:"1剤減薬は12週で<b>非劣性</b>（調整RR 0.98）、SBP+3.4 ／脱処方は短期的に安全"},
         {src:"PARTAGE（Benetos, 2015）",pmid:"25685919",point:"低SBP&lt;130＋<b>≥2剤</b>で2年死亡 <b>adj HR 1.78（1.34–2.37）</b> ／過降圧＋多剤は死亡リスク"},
@@ -170,7 +193,7 @@ const QUESTIONS = [
       guideline:[
         "<b>(1) 「年齢」でなく「自立度・フレイル」で層別化</b>：自立・非フレイルには厳格降圧が有益（SPRINT≥75, STEP）／要介護・反復転倒・症候性OHでは害が上回る（PARTAGE）。2024 ESC・2025 ACC/AHAも高齢・フレイルは個別化（<b>原典で要確認</b>）。",
         "<b>(2) 利益が「及ぶ／及ばない」集団</b>：及ぶ＝自立・歩行可能（SPRINT≥75：primary 0.66、injurious falls 非増加）。及ばない＝施設入所・フレイル多剤（PARTAGE 死亡 adj HR 1.78）、DMで&lt;120（ACCORD 無効）、本症例。",
-        "<b>(3) OH管理の順序</b>：①原因薬の見直し（最優先）→②非薬物→③難治例にフルドロコルチゾン/ミドドリン（図2）。",
+        "<b>(3) OH管理の順序</b>：①原因薬の見直し（最優先）→②非薬物→③難治例にフルドロコルチゾン/ミドドリン（図）。",
         "<b>(4) 脱処方</b>：全処方の棚卸し→害&gt;益を同定（OHなら降圧薬・利尿薬）→<b>1剤ずつ</b>減量（OPTIMISE非劣性）→家庭血圧・起立時血圧・症状をモニタ→必要なら再開。",
         "<b>(5) 家庭血圧・起立時血圧</b>：高齢者では起立時血圧の系統的測定がOH検出と安全な降圧調整の弁になる。減薬後の追跡指標。"
       ],
@@ -214,16 +237,24 @@ const QUESTIONS = [
       <li><b>ゲート4 ── 全身HRTが使えないVMSの非ホルモン第一選択＝SSRI/SNRI</b>（NAMS 2023 Level I）。</li>
       </ul>
       <p>→ 4ゲートすべて通過するのは <b>A のみ</b>。</p>`,
-      fig:``,
+      fig:`<figure class="qfig"><svg viewBox="0 0 900 320" xmlns="http://www.w3.org/2000/svg" font-family="Inter, 'Noto Sans JP', sans-serif">
+<rect x="0" y="0" width="900" height="320" fill="#0d0f12"/>
+<text x="450" y="32" text-anchor="middle" font-size="20" font-weight="700" fill="#e9eaee">全身HRTが使えないVMS：4つの論理ゲート</text>
+<rect x="20" y="56" width="270" height="124" rx="10" fill="#241318" stroke="#fb7185" stroke-width="1.5"/><text x="155" y="84" text-anchor="middle" font-size="15" font-weight="700" fill="#fb7185">ゲート1</text><text x="155" y="110" text-anchor="middle" font-size="13.5" fill="#c8cad3">特発性VTE既往</text><text x="155" y="134" text-anchor="middle" font-size="13.5" fill="#c8cad3">＝全身HRTは禁忌</text><text x="155" y="162" text-anchor="middle" font-size="12.5" fill="#fb7185">経口も経皮も不可（C・D・E除外）</text>
+<rect x="315" y="56" width="270" height="124" rx="10" fill="#241318" stroke="#fb7185" stroke-width="1.5"/><text x="450" y="84" text-anchor="middle" font-size="15" font-weight="700" fill="#fb7185">ゲート2</text><text x="450" y="110" text-anchor="middle" font-size="13.5" fill="#c8cad3">子宮あり</text><text x="450" y="134" text-anchor="middle" font-size="13.5" fill="#c8cad3">＝エストロゲン単独不可</text><text x="450" y="162" text-anchor="middle" font-size="12.5" fill="#fb7185">子宮内膜癌リスク（D除外）</text>
+<rect x="610" y="56" width="270" height="124" rx="10" fill="#231c10" stroke="#fbbf24" stroke-width="1.5"/><text x="745" y="84" text-anchor="middle" font-size="15" font-weight="700" fill="#fbbf24">ゲート3</text><text x="745" y="110" text-anchor="middle" font-size="13.5" fill="#c8cad3">経腟E＝GSM局所用</text><text x="745" y="134" text-anchor="middle" font-size="13.5" fill="#c8cad3">＝全身VMSに無効</text><text x="745" y="162" text-anchor="middle" font-size="12.5" fill="#fbbf24">（B除外）</text>
+<text x="450" y="206" text-anchor="middle" font-size="20" fill="#5a5f6d">↓</text>
+<rect x="20" y="220" width="860" height="82" rx="10" fill="#0f231c" stroke="#34d399" stroke-width="2"/><text x="450" y="252" text-anchor="middle" font-size="16" font-weight="700" fill="#34d399">ゲート4 → 残るのは A：非ホルモン第一選択（SSRI／SNRI）</text><text x="450" y="280" text-anchor="middle" font-size="13" fill="#c8cad3">NAMS 2023 Level I：CBT・SSRI/SNRI・ガバペンチン・フェゾリネタント</text>
+</svg><figcaption>図. VTE既往→子宮あり→経腟は局所用、という3ゲートで全身HRTの各選択肢が除外され、残る非ホルモン（SSRI）が第一選択となる。</figcaption></figure>`,
       evidence:[
         {src:"WHI E+P（Rossouw, 2002）",pmid:"12117397",point:"RCT・子宮あり16,608例。<b>肺塞栓 HR 2.13（1.39–3.25）</b>、脳卒中1.41、乳癌1.26"},
         {src:"WHI E単独（Anderson, 2004）",pmid:"15082697",point:"RCT・子宮摘出後。脳卒中 <b>HR 1.39（1.10–1.77）</b>、乳癌0.77。子宮摘出者限定"},
         {src:"ESTHER（Canonico, 2007）",pmid:"17309934",point:"症例対照・特発性VTE初発。経口E <b>OR 4.2（1.5–11.6）</b>／<b>経皮E OR 0.9（0.4–2.1）＝非有意</b>"},
         {src:"HRT/VTE 大規模（Vinogradova, 2019）",pmid:"30626577",point:"症例対照（VTE 80,396例）。経口全体 aOR 1.58／CEE+MPA 2.10／<b>経皮 aOR 0.93（0.87–1.01）</b>"},
         {src:"メタ解析（Rovinski, 2018）",pmid:"29936403",point:"SR/MA。経口 OR 1.72／<b>非経口 OR 0.97（0.90–1.06）</b>"},
-        {src:"ELITE（Hodis, 2016）",pmid:"27028912",point:"RCT・閉経<6年 vs ≥10年。早期開始でCIMT抑制（交互作用 P=0.007）＝<b>timing仮説</b>"},
+        {src:"ELITE（Hodis, 2016）",pmid:"27028912",point:"RCT・閉経&lt;6年 vs ≥10年。早期開始でCIMT抑制（交互作用 P=0.007）＝<b>timing仮説</b>"},
         {src:"低用量パロキセチン7.5mg（Simon, 2013）",pmid:"24045678",point:"2本の第3相RCT。VMS頻度を有意に減少。<b>米国唯一のVMS適応承認</b>"},
-        {src:"SKYLIGHT 1（Lederman, 2023）",pmid:"36924778",point:"第3相RCT・フェゾリネタント。45mgで12週VMS頻度 LSM差 <b>−2.55（P<0.001）</b>"},
+        {src:"SKYLIGHT 1（Lederman, 2023）",pmid:"36924778",point:"第3相RCT・フェゾリネタント。45mgで12週VMS頻度 LSM差 <b>−2.55（P&lt;0.001）</b>"},
         {src:"NAMS 非ホルモン療法 2023",pmid:"37252752",point:"ステートメント。<b>Level I：CBT・SSRI/SNRI・ガバペンチン・フェゾリネタント</b>"}
       ],
       distractors:`<p><b>B. 経腟エストロゲン</b> — <b>GSM（腟乾燥・性交痛・反復尿路症状）の局所治療</b>で全身吸収が低く、全身性VMSには無効。本例の主訴はGSMでない。<span class="bias">適応の取り違え／カテゴリーエラー</span></p>
@@ -232,8 +263,8 @@ const QUESTIONS = [
       <p><b>E. 経皮E＋プロゲスチン併用（最も巧妙な誤答）</b> — 内膜保護と経路（経皮＝中立）を一見クリアするが、<b>特発性VTE既往の禁忌は解除されない</b>。プロゲスチン選択でVTEが上がる場合も（ESTHER：ノルプレグナン系 OR 3.9）。<span class="bias">合成バイアス（対策の積み上げで禁忌を回避できるという誤った安心）</span></p>`,
       guideline:[
         "<b>(1) 適応と禁忌</b>：適応＝中等度〜重度のVMS・GSM・早発卵巣不全・骨粗鬆症予防（他剤不適時）。禁忌＝<b>VTE/肺塞栓の既往・活動性、エストロゲン依存性腫瘍（乳癌・子宮内膜癌）、原因不明の性器出血、活動性肝疾患、冠動脈疾患/脳卒中既往、妊娠</b>。本例は特発性VTE既往に該当。",
-        "<b>(2) 投与経路とVTEリスク（図3a）</b>：経口CEE+MPAが最高（aOR 2.10）、経皮は中立（aOR 0.93）。だが<b>既往例では中立性が禁忌を解除しない</b>。",
-        "<b>(3) timing仮説</b>：ELITEは経口エストラジオールが閉経<6年で開始するとCIMT（頸動脈内膜中膜厚）の進展を抑制（≥10年で無効）。WHI 18年（Manson 2017, PMID 28898378）も50–59歳開始で死亡良好。<b>ただし禁忌のない患者に限る</b>。本例はtiming条件を満たすがVTE既往が優先。",
+        "<b>(2) 投与経路とVTEリスク（図）</b>：経口CEE+MPAが最高（aOR 2.10）、経皮は中立（aOR 0.93）。だが<b>既往例では中立性が禁忌を解除しない</b>。",
+        "<b>(3) timing仮説</b>：ELITEは経口エストラジオールが閉経&lt;6年で開始するとCIMT（頸動脈内膜中膜厚）の進展を抑制（≥10年で無効）。WHI 18年（Manson 2017, PMID 28898378）も50–59歳開始で死亡良好。<b>ただし禁忌のない患者に限る</b>。本例はtiming条件を満たすがVTE既往が優先。",
         "<b>(4) 子宮の有無とプロゲスチン</b>：子宮あり→エストロゲン＋プロゲスチン併用が必須（子宮内膜癌の予防）。子宮摘出後→エストロゲン単独可。",
         "<b>(5) 非ホルモン薬（NAMS 2023 Level I）</b>：SSRI（パロキセチン7.5mgは米国唯一のVMS適応薬）・SNRI（ベンラファキシン）・ガバペンチン（夜間・睡眠）・NK3拮抗薬フェゾリネタント（SKYLIGHTで12週VMS頻度 約−2.5、肝機能モニタ）。",
         "<b>(6) 乳癌サバイバーとSSRIの選び方 ─ タモキシフェンとの相互作用（重要）</b>：<b>タモキシフェン</b>はエストロゲン受容体（ER）陽性乳癌の術後補助療法・予防に使う抗エストロゲン薬で、それ自体は効果の弱い<b>プロドラッグ</b>。肝の酵素<b>CYP2D6</b>で活性代謝物<b>エンドキシフェン</b>に変換されてはじめて十分に効く。<b>パロキセチン（およびフルオキセチン）は強力なCYP2D6阻害薬</b>で、併用するとエンドキシフェンが低下し<b>タモキシフェンの抗腫瘍効果が弱まる</b>おそれがある（パロキセチン併用が乳癌死の増加と関連した観察研究：Kelly 2010 BMJ／エンドキシフェン低下の機序：Stearns 2003）。乳癌サバイバーはHRTが使えずVMSにSSRI/SNRIを用いることが多いため、<b>タモキシフェン服用者では強いCYP2D6阻害薬（パロキセチン・フルオキセチン）を避け、CYP2D6阻害の弱いSSRI（エスシタロプラム・シタロプラム）やSNRI（ベンラファキシン）を選ぶ</b>。※本症例は乳癌もタモキシフェンもなく該当しないが、VMSにSSRIを使う際の基本的な注意点。"
@@ -311,7 +342,17 @@ const QUESTIONS = [
       </tr>
       </tbody>
       </table>`,
-      fig:``,
+      fig:`<figure class="qfig"><svg viewBox="0 0 900 320" xmlns="http://www.w3.org/2000/svg" font-family="Inter, 'Noto Sans JP', sans-serif">
+<rect x="0" y="0" width="900" height="320" fill="#0d0f12"/>
+<text x="450" y="30" text-anchor="middle" font-size="20" font-weight="700" fill="#e9eaee">脾摘後（無脾症）OPSI予防の包括戦略</text>
+<rect x="40" y="48" width="300" height="66" rx="10" fill="#15132a" stroke="#7c6cff" stroke-width="1.5"/><text x="190" y="76" text-anchor="middle" font-size="14" font-weight="700" fill="#b1a6ff">結合型 PCV（記憶・ブースター）</text><text x="190" y="98" text-anchor="middle" font-size="12.5" fill="#8a8e99">本児は接種済</text>
+<text x="430" y="74" text-anchor="middle" font-size="13" fill="#c8cad3">≥8週</text><text x="430" y="96" text-anchor="middle" font-size="20" fill="#5a5f6d">→</text>
+<rect x="520" y="48" width="340" height="66" rx="10" fill="#0f231c" stroke="#34d399" stroke-width="2"/><text x="690" y="76" text-anchor="middle" font-size="14" font-weight="700" fill="#34d399">多糖体 PPSV23（血清型を拡大）</text><text x="690" y="98" text-anchor="middle" font-size="12.5" fill="#c8cad3">本児はここを追加（正答C）</text>
+<text x="450" y="150" text-anchor="middle" font-size="14.5" font-weight="700" fill="#e9eaee">OPSI予防の3本柱</text>
+<rect x="20" y="166" width="278" height="134" rx="10" fill="#15132a" stroke="#7c6cff" stroke-width="1.5"/><text x="159" y="194" text-anchor="middle" font-size="14" font-weight="700" fill="#b1a6ff">① ワクチン束</text><text x="36" y="220" font-size="12.5" fill="#c8cad3">肺炎球菌（PCV→PPSV23）</text><text x="36" y="242" font-size="12.5" fill="#c8cad3">髄膜炎菌ACWY/B・Hib</text><text x="36" y="264" font-size="12.5" fill="#c8cad3">年次インフルエンザ</text>
+<rect x="311" y="166" width="278" height="134" rx="10" fill="#231c10" stroke="#fbbf24" stroke-width="1.5"/><text x="450" y="194" text-anchor="middle" font-size="14" font-weight="700" fill="#fbbf24">② 予防的抗菌薬</text><text x="327" y="220" font-size="12.5" fill="#c8cad3">ペニシリン系</text><text x="327" y="242" font-size="12.5" fill="#c8cad3">（小児はアモキシシリン）</text><text x="327" y="264" font-size="12.5" fill="#c8cad3">5歳未満・術後早期で特に</text>
+<rect x="602" y="166" width="278" height="134" rx="10" fill="#241318" stroke="#fb7185" stroke-width="1.5"/><text x="741" y="194" text-anchor="middle" font-size="14" font-weight="700" fill="#fb7185">③ 発熱時＋教育</text><text x="618" y="220" font-size="12.5" fill="#c8cad3">stand-by抗菌薬を即内服し受診</text><text x="618" y="242" font-size="12.5" fill="#c8cad3">メディカルアラート携行</text><text x="618" y="264" font-size="12.5" fill="#c8cad3">動物咬傷・渡航の注意</text>
+</svg><figcaption>図. 無脾症ではPCV（記憶）→≥8週→PPSV23（血清型拡大）の逐次接種に加え、ワクチン束・予防的抗菌薬・発熱時の早期対応＋教育の3本柱でOPSIを防ぐ。</figcaption></figure>`,
       evidence:[
         {src:"ACIP小児（中核）：Nuorti & Whitney, MMWR 2010",pmid:"21150868",point:"基礎疾患児に<b>全PCV完了後にPPSV23</b>。無脾症は高リスク"},
         {src:"ACIP接種間隔：Kobayashi, MMWR 2015",pmid:"26334788",point:"PCVとPPSV23の<b>間隔≥8週</b>・順序。同時接種は非推奨"},
@@ -327,7 +368,7 @@ const QUESTIONS = [
       <p><b>D. PCV13毎年接種</b> — PCVは毎年接種するワクチンでない（年次はインフル）。結合型は記憶を作りルーチン反復不要。<span class="bias">誤った類推</span></p>
       <p><b>E. PCV13とPPSV23の同時接種</b> — 高リスク小児はPCV→PPSV23を<b>≥8週あけて逐次</b>。同時/近接は多糖体側の応答が減弱しうる。<span class="bias">premature closure</span></p>`,
       guideline:[
-        "<b>(1) 包括的予防（図4b）</b>：OPSI予防は<b>(A) ワクチン束（肺炎球菌＋髄膜炎菌ACWY/B＋Hib＋年次インフル）、(B) 予防的抗菌薬、(C) 発熱時の早期対応・患者教育</b>の総合戦略。",
+        "<b>(1) 包括的予防（図）</b>：OPSI予防は<b>(A) ワクチン束（肺炎球菌＋髄膜炎菌ACWY/B＋Hib＋年次インフル）、(B) 予防的抗菌薬、(C) 発熱時の早期対応・患者教育</b>の総合戦略。",
         "<b>(2) 予防的抗菌薬</b>：ペニシリン系（小児はアモキシシリン／ペニシリンV）。術後早期・5歳未満でリスクが高い。本児（4歳・術後1年）は<b>継続が強く支持</b>される。",
         "<b>(3) 発熱時early antibiotics＋教育</b>：無脾の発熱は緊急。<b>携行の経口抗菌薬（stand-by）を直ちに内服し受診</b>。メディカルアラート携行、動物咬傷（Capnocytophaga）・渡航マラリア/バベシアの説明。",
         "<b>(4) 脾摘の時期とワクチン</b>：待機的脾摘は手術<b>≥2週前</b>に接種する。本児は術後1年経過＝現在の課題は未完のPPSV23（ニューモバックスNP®）を適切な間隔で追加すること。",
@@ -363,8 +404,22 @@ const QUESTIONS = [
     explain:{
       core:`<p>「<b>抗コリン薬の毒性＋ポリファーマシー＋処方カスケード</b>」の典型。過活動膀胱への<b>オキシブチニン</b>（中枢移行性の高い第3級アミン抗コリン薬）が、せん妄様言動・認知機能低下・転倒の最も是正可能な原因。</p>
       <p>「まず中止すべき」＝<b>〈害への寄与の大きさ〉×〈直ちに・安全に（離脱なく）中止できるか〉</b>の積を最大化する薬剤。 - <b>害</b>：オキシブチニンは中枢移行が高く、せん妄・認知低下・口渇・便秘・尿閉。膀胱抗ムスカリン薬は用量依存的に認知症リスクを上げるクラス（Gray 2015、Coupland 2019）。Beers 2023・STOPP/START v3・国内STOPP-Jいずれも、認知機能障害・せん妄・転倒で抗コリン薬を回避。 - <b>中止の安全性</b>：オキシブチニンは<b>身体依存・離脱を作らない</b>＝即時に安全中止可。過活動膀胱は致死的緊急でなく、代替（β3作動薬ミラベグロン・膀胱訓練）がある。 - <b>対照的に</b>：<b>ロラゼパム（E）</b>＝長期連用ベンゾの急中止は離脱（痙攣・せん妄）を誘発→<b>漸減</b>で「即中止」でない。<b>ゾルピデム（D）</b>もZ薬で依存・離脱があり漸減。<b>アムロジピン（A）</b>＝OHなくせん妄/転倒の主因でない。<b>オメプラゾール（C）</b>＝緊急原因でなく漫然投与の見直し対象。</p>
-      <p>→ 「害が大きく、かつ離脱なく今すぐ安全に止められる」唯一が <b>B. オキシブチニン</b>（図5a）。</p>`,
-      fig:``,
+      <p>→ 「害が大きく、かつ離脱なく今すぐ安全に止められる」唯一が <b>B. オキシブチニン</b>（図）。</p>`,
+      fig:`<figure class="qfig"><svg viewBox="0 0 900 360" xmlns="http://www.w3.org/2000/svg" font-family="Inter, 'Noto Sans JP', sans-serif">
+<rect x="0" y="0" width="900" height="360" fill="#0d0f12"/>
+<text x="450" y="30" text-anchor="middle" font-size="18" font-weight="700" fill="#e9eaee">「まず中止すべき薬剤」＝ 害の大きさ × 今すぐ安全に止められるか</text>
+<line x1="140" y1="320" x2="860" y2="320" stroke="#2a2e38" stroke-width="1.5"/>
+<line x1="140" y1="62" x2="140" y2="320" stroke="#2a2e38" stroke-width="1.5"/>
+<text x="500" y="346" text-anchor="middle" font-size="12.5" fill="#8a8e99">中止の安全性・即時性（離脱なく今すぐ止められる）→</text>
+<text x="150" y="56" font-size="12.5" fill="#8a8e99">↑ 害への寄与（せん妄・転倒）</text>
+<line x1="500" y1="64" x2="500" y2="320" stroke="#1c1f26" stroke-width="1" stroke-dasharray="4 4"/>
+<line x1="140" y1="195" x2="860" y2="195" stroke="#1c1f26" stroke-width="1" stroke-dasharray="4 4"/>
+<circle cx="775" cy="112" r="11" fill="none" stroke="#34d399" stroke-width="2"/><circle cx="775" cy="112" r="6" fill="#34d399"/><text x="755" y="106" text-anchor="end" font-size="13.5" font-weight="700" fill="#34d399">B オキシブチニン</text><text x="755" y="124" text-anchor="end" font-size="11.5" fill="#34d399">→ 第一に中止（害大・即時安全）</text>
+<circle cx="250" cy="118" r="8" fill="#fb7185"/><text x="266" y="114" font-size="13" fill="#e7b4bd">E ロラゼパム</text><text x="266" y="132" font-size="11.5" fill="#8a8e99">害大／急中止は離脱→漸減</text>
+<circle cx="330" cy="168" r="8" fill="#fb7185"/><text x="346" y="172" font-size="13" fill="#e7b4bd">D ゾルピデム（漸減）</text>
+<circle cx="760" cy="268" r="8" fill="#7c6cff"/><text x="760" y="252" text-anchor="middle" font-size="13" fill="#c8cad3">A アムロジピン</text>
+<circle cx="455" cy="280" r="8" fill="#7c6cff"/><text x="455" y="264" text-anchor="middle" font-size="13" fill="#c8cad3">C オメプラゾール</text>
+</svg><figcaption>図. 「まず中止」は〈害の大きさ〉×〈離脱なく今すぐ安全に止められるか〉で決まる。Bオキシブチニンは害が大きく即時中止が安全＝第一手。E・Dは害が大きくても漸減が必要。</figcaption></figure>`,
       evidence:[
         {src:"AGS Beers Criteria 2023",pmid:"37139824",point:"抗コリン薬・ベンゾ・Z薬を<b>回避すべきPIM</b>（せん妄・認知・転倒で特に）"},
         {src:"STOPP/START v3（O'Mahony, 2023）",pmid:"37256475",point:"190項目。抗コリン負荷・ベンゾ/Z薬・転倒リスク薬を体系的にPIM化"},
@@ -686,7 +741,14 @@ const QUESTIONS = [
       </tbody>
       </table>
       <p><b>まとめ</b>：避ける＝モルヒネ・コデイン・トラマドール／減量で許容＝オキシコドン・ヒドロモルフォン／望ましい＝<b>フェンタニル</b>・ブプレノルフィン・メサドン。<b>透析の有無で変わる</b>：血液透析患者ではフェンタニルは不適とされブプレノルフィンが第一選択候補（Coluzzi 2020）。本症例は<b>非透析</b>なのでフェンタニルで矛盾しない。</p>`,
-      fig:``,
+      fig:`<figure class="qfig"><svg viewBox="0 0 900 322" xmlns="http://www.w3.org/2000/svg" font-family="Inter, 'Noto Sans JP', sans-serif">
+<rect x="0" y="0" width="900" height="322" fill="#0d0f12"/>
+<text x="450" y="30" text-anchor="middle" font-size="19" font-weight="700" fill="#e9eaee">腎障害（CKD）でのオピオイド選択 ─ 活性代謝物の腎蓄積で決まる</text>
+<rect x="20" y="50" width="278" height="166" rx="10" fill="#241318" stroke="#fb7185" stroke-width="1.5"/><text x="159" y="78" text-anchor="middle" font-size="15" font-weight="700" fill="#fb7185">✗ 避ける</text><text x="38" y="106" font-size="13" fill="#c8cad3">モルヒネ（M6G・M3Gが蓄積）</text><text x="38" y="132" font-size="13" fill="#c8cad3">コデイン（→モルヒネに代謝）</text><text x="38" y="158" font-size="13" fill="#c8cad3">トラマドール（M1・痙攣/5-HT）</text><text x="38" y="192" font-size="12" fill="#8a8e99">活性代謝物が腎排泄で蓄積</text>
+<rect x="311" y="50" width="278" height="166" rx="10" fill="#231c10" stroke="#fbbf24" stroke-width="1.5"/><text x="450" y="78" text-anchor="middle" font-size="15" font-weight="700" fill="#fbbf24">△ 減量で許容</text><text x="329" y="106" font-size="13" fill="#c8cad3">オキシコドン</text><text x="329" y="132" font-size="13" fill="#c8cad3">ヒドロモルフォン（H3G）</text><text x="329" y="192" font-size="12" fill="#8a8e99">活性代謝物あり→減量・間隔延長</text>
+<rect x="602" y="50" width="278" height="166" rx="10" fill="#0f231c" stroke="#34d399" stroke-width="2"/><text x="741" y="78" text-anchor="middle" font-size="15" font-weight="700" fill="#34d399">◯ 望ましい</text><text x="620" y="106" font-size="12.5" fill="#c8cad3">フェンタニル（代謝物＝不活性）</text><text x="620" y="132" font-size="13" fill="#c8cad3">ブプレノルフィン</text><text x="620" y="158" font-size="13" fill="#c8cad3">メサドン</text><text x="620" y="192" font-size="12" fill="#8a8e99">活性代謝物が乏しく蓄積しにくい</text>
+<rect x="20" y="232" width="860" height="72" rx="10" fill="#13161b" stroke="#2a2e38" stroke-width="1.5"/><text x="450" y="260" text-anchor="middle" font-size="14" font-weight="700" fill="#e9eaee">透析の有無で第一選択が変わる</text><text x="450" y="285" text-anchor="middle" font-size="12.5" fill="#c8cad3">非透析 eGFR22 → フェンタニル（本例）　／　血液透析 → ブプレノルフィン（フェンタニルは不適）</text>
+</svg><figcaption>図. 腎障害では活性代謝物が腎に蓄積するモルヒネ・コデイン・トラマドールを避け、代謝物の乏しいフェンタニル等を選ぶ。非透析の本例はフェンタニルが第一選択。</figcaption></figure>`,
       evidence:[
         {src:"EAPC オピオイドGL（Caraceni 2012）",pmid:"22300860",point:"GRADEベースの中核GL。腎障害・スイッチング・神経障害性疼痛・便秘/悪心を体系化"},
         {src:"腎障害×オピオイド SR（King 2011）",pmid:"21708859",point:"RCTは皆無・エビデンスはvery low。代謝物の活性/蓄積でリスク層別。<b>フェンタニル・アルフェンタニル・メサドンが最も害が少ない／モルヒネは毒性</b>"},
@@ -768,7 +830,16 @@ const QUESTIONS = [
       </tbody>
       </table>
       <p><b>16特定疾病（施行令第2条）</b>：①がん（末期）②関節リウマチ ③ALS ④後縦靱帯骨化症 ⑤骨折を伴う骨粗鬆症 ⑥初老期認知症 ⑦パーキンソン病関連疾患 ⑧脊髄小脳変性症 ⑨脊柱管狭窄症 ⑩早老症 ⑪多系統萎縮症 ⑫糖尿病性神経障害・腎症・網膜症 ⑬脳血管疾患 ⑭閉塞性動脈硬化症 ⑮COPD ⑯両側の膝/股関節の著しい変形性関節症。「がん（末期）」は<b>平成18（2006）年4月</b>に追加。</p>`,
-      fig:``,
+      fig:`<figure class="qfig"><svg viewBox="0 0 900 280" xmlns="http://www.w3.org/2000/svg" font-family="Inter, 'Noto Sans JP', sans-serif">
+<rect x="0" y="0" width="900" height="280" fill="#0d0f12"/>
+<text x="450" y="30" text-anchor="middle" font-size="19" font-weight="700" fill="#e9eaee">介護保険の利用判定（第2号被保険者・特定疾病）</text>
+<rect x="20" y="52" width="262" height="86" rx="10" fill="#15132a" stroke="#7c6cff" stroke-width="1.5"/><text x="151" y="86" text-anchor="middle" font-size="14" font-weight="700" fill="#b1a6ff">第2号被保険者</text><text x="151" y="110" text-anchor="middle" font-size="12.5" fill="#c8cad3">58歳・医療保険加入（40〜64歳）</text>
+<text x="294" y="100" text-anchor="middle" font-size="20" fill="#5a5f6d">→</text>
+<rect x="318" y="52" width="262" height="86" rx="10" fill="#231c10" stroke="#fbbf24" stroke-width="1.5"/><text x="449" y="80" text-anchor="middle" font-size="14" font-weight="700" fill="#fbbf24">特定疾病が原因か？</text><text x="449" y="104" text-anchor="middle" font-size="12.5" fill="#c8cad3">末期がん＝特定疾病①に該当 ◯</text><text x="449" y="125" text-anchor="middle" font-size="11.5" fill="#8a8e99">第2号は特定疾病16種が要件</text>
+<text x="592" y="100" text-anchor="middle" font-size="20" fill="#5a5f6d">→</text>
+<rect x="616" y="52" width="264" height="86" rx="10" fill="#0f231c" stroke="#34d399" stroke-width="2"/><text x="748" y="80" text-anchor="middle" font-size="14" font-weight="700" fill="#34d399">要介護認定を申請</text><text x="748" y="104" text-anchor="middle" font-size="12.5" fill="#c8cad3">（必須）→ 介護サービス利用可</text><text x="748" y="125" text-anchor="middle" font-size="11.5" fill="#34d399">正答B</text>
+<rect x="20" y="158" width="860" height="104" rx="10" fill="#13161b" stroke="#2a2e38" stroke-width="1.5"/><text x="40" y="184" font-size="13.5" font-weight="700" fill="#e9eaee">よくある誤り</text><text x="40" y="208" font-size="12.5" fill="#c8cad3">✗ 65歳未満でも「利用できない」わけではない（A）　✗ 身体障害者手帳は不要（C）</text><text x="40" y="230" font-size="12.5" fill="#c8cad3">✗ 生活保護の受給は条件でない（D）　✗ 要介護認定は省略できない（E／急ぐ時は暫定ケアプラン）</text><text x="40" y="252" font-size="12" fill="#8a8e99">末期がんの訪問看護は「別表第7」該当で医療保険が優先（介護保険の限度額を消費しない）</text>
+</svg><figcaption>図. 40〜64歳（第2号）は要介護の原因が特定疾病（末期がん＝①）なら、要介護認定の申請を経て介護保険を利用できる。手帳・生活保護は要件でない。</figcaption></figure>`,
       evidence:[],
       distractors:`<p><b>A. 65歳未満のため利用できない</b> — ×。40〜64歳でも第2号被保険者として特定疾病が原因なら利用可。本例は末期がんに該当。「介護保険＝65歳以上」のイメージが誤解の背景（<b>対象外は39歳以下</b>）。</p>
       <p><b>C. 身体障害者手帳が必要</b> — ×。介護保険利用に手帳は<b>不要</b>。手帳は身体障害者福祉法の別制度。入口は「要介護認定＋（第2号なら）特定疾病該当」。</p>
