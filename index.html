@@ -16,12 +16,18 @@
     <span class="dot"></span><span class="b">FM BOARDS</span>
   </a>
   <span class="r">家庭医療専門医 筆記想定</span>
+  <span class="r" id="auth" style="margin-left:14px"></span>
 </div></header>
 <main>
   <div id="home" class="screen active"></div>
   <div id="quiz" class="screen"></div>
   <div id="result" class="screen"></div>
 </main>
+<!-- Supabase 本体（CDN。グローバル window.supabase を作る） -->
+<script src="https://cdn.jsdelivr.net/npm/@supabase/supabase-js@2"></script>
+<!-- 認証と履歴保存の受け皿（新規） -->
+<script src="fmboards_store.js"></script>
+<!-- 既存 -->
 <script src="fmboards_data.js"></script>
 <script src="fmboards_app.js"></script>
 </body>

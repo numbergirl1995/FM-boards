@@ -22,7 +22,7 @@
   function loadStats(){
     if(!CFG.endpoint)return;
     const cb='fmbcb_'+Math.random().toString(36).slice(2);
-    window[cb]=function(d){AGG=d;try{delete window[cb]}catch(e){}};
+    window[cb]=function(d){AGG=d;try{delete window[cb]}catch(e){};refreshStatPanel();};
     const sc=document.createElement('script');
     sc.src=CFG.endpoint+'?callback='+cb+'&t='+Date.now();
     sc.onerror=function(){try{delete window[cb]}catch(e){}};
@@ -34,6 +34,18 @@
       body:JSON.stringify({session:session,setId:logSetId,setSize:logSetSize,qid:qid,chosen:chosen,correct:correct?1:0})});}catch(e){}
   }
   const qidOf=gi=>'q'+(gi+1);
+  /* live-refresh the visible crowd-stats panel without page reload */
+  function refreshStatPanel(){
+    const host=document.querySelector('#exp .statpanel'); if(!host)return;
+    const done=results[idx]; if(!done||!run[idx])return;
+    const t=document.createElement('div'); t.innerHTML=statPanel(run[idx].gi,done.chosen,run[idx].q.answer);
+    const fresh=t.firstElementChild; if(fresh){fresh.classList.add('in');host.replaceWith(fresh);}
+  }
+  /* resume-on-reload (localStorage) */
+  function saveState(){try{lsSet('fmb_state',JSON.stringify({g:run.map(r=>r.gi),i:idx,r:results,s:session,sid:logSetId,ss:logSetSize,t:Date.now()}))}catch(e){}}
+  function clearState(){try{localStorage.removeItem('fmb_state')}catch(e){}}
+  function loadState(){try{const s=JSON.parse(lsGet('fmb_state')||'null');if(!s||!s.g||!s.g.length)return null;if(Date.now()-(s.t||0)>6*3600*1000)return null;if(s.g.some(i=>i<0||i>=Q.length))return null;if((s.i||0)>=s.g.length)return null;return s;}catch(e){return null}}
+  function resumeState(){const s=loadState();if(!s)return;run=s.g.map(i=>({q:Q[i],gi:i}));idx=s.i||0;results=(s.r||[]).slice(0,run.length);while(results.length<run.length)results.push(null);session=s.s||newSession();logSetId=s.sid||'';logSetSize=s.ss||0;renderQuestion();show('#quiz');}
 
   /* ---------- home (2 modes) ---------- */
   function categories(){const m={};Q.forEach((q,i)=>(q.cat||[]).forEach(c=>{(m[c]=m[c]||[]).push(i)}));return m;}
@@ -43,10 +55,13 @@
     const s1=setMeta('set1'), s2=setMeta('set2'), cats=categories();
     const domList=gis=>gis.map(i=>`<span class="dchip">${Q[i].domEn}</span>`).join('');
     const catChips=Object.keys(cats).sort().map(c=>`<button class="catchip" data-cat="${c}">${c}<span class="cc">${cats[c].length}</span></button>`).join('');
+    const rs=loadState();
+    const resumeBtn=rs?`<button class="resumebar" id="resume">▶ 中断した${rs.ss>0?('セット'+String(rs.sid).replace('set','')):('テーマ「'+String(rs.sid).replace('theme:','')+'」')}を再開（解答済 ${(rs.r||[]).filter(x=>x).length} / ${rs.g.length}問）</button>`:'';
     $('#home').innerHTML=`<div class="home">
       <div class="kicker">家庭医療専門医 · 筆記想定問題集</div>
       <h1>現場で差がつく<br><span class="g">10問</span>。</h1>
       <p class="lead">総合診療「専門医」レベル。一次文献（PubMed照合済）に基づく深い解説。解答後に<b>正答率・全選択肢の選択率・識別指数</b>が出ます。</p>
+      ${resumeBtn}
       <div class="modesec">
         <div class="modlab"><span class="mi">①</span> 5問セット <span class="ms">テスト形式・完答者平均つき</span></div>
         <div class="setcards">
@@ -59,6 +74,17 @@
     </div>`;
     document.querySelectorAll('.setcard').forEach(b=>b.onclick=()=>startSet(b.dataset.set));
     document.querySelectorAll('.catchip').forEach(b=>b.onclick=()=>startTheme(b.dataset.cat));
+    const rb=$('#resume'); if(rb)rb.onclick=resumeState;
+    if(window.FMBStore){
+      FMBStore.getHistory().then(h=>{
+        const host=document.querySelector('#home .home'); if(!host) return;
+        const n=h.length, ok=h.filter(x=>x.correct).length; if(!n) return;
+        const box=document.createElement('div'); box.className='domains'; box.style.marginTop='24px';
+        const who=FMBStore.getUser()?'':' · <span style="color:var(--faint)">※未ログイン（この端末のみ）</span>';
+        box.innerHTML='<div class="lab">あなたの記録</div><div style="color:var(--muted);font-size:14px">累計 '+n+' 問回答 · 正答 '+ok+'（'+Math.round(ok/n*100)+'%）'+who+'</div>';
+        host.appendChild(box);
+      });
+    }
   }
 
   /* ---------- run control ---------- */
@@ -89,14 +115,18 @@
     document.querySelectorAll('#opts .opt').forEach(o=>o.onclick=()=>choose(+o.dataset.i));
     if(done) reveal(done.chosen);
     setTimeout(obs,40);
+    saveState();
   }
 
   function choose(ci){
     if(results[idx])return;
     const r=run[idx], ok=ci===r.q.answer;
     results[idx]={chosen:ci,ok};
+    if(window.FMBStore) FMBStore.recordAttempt(r.q.id || qidOf(r.gi), ci, ok);
     logAnswer(qidOf(r.gi),ci,ok);
     reveal(ci);
+    saveState();
+    setTimeout(loadStats,1500);
   }
 
   /* ---------- per-question crowd stats panel ---------- */
@@ -169,6 +199,7 @@
 
   /* ---------- result ---------- */
   function showResult(){
+    clearState();
     const correct=results.filter(x=>x&&x.ok).length, n=run.length;
     const pct=Math.round(correct/n*100);
     let bestLine='';
@@ -202,4 +233,5 @@
 
   loadStats();
   renderHome();
+  if(window.FMBStore) FMBStore.onChange(function(){ if($('#home').classList.contains('active')) renderHome(); });
 })();
