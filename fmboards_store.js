@@ -59,13 +59,28 @@
     async signOut() { await sb.auth.signOut(); },
   };
 
-  // ログイン時：localStorage に貯めた分をクラウドへ移して消す（1回だけ）
+  // ログイン時：localStorage に貯めた分をクラウドへ1回だけ移す（冪等：何度呼ばれても二重計上しない）
+  let migrating = false;
   async function migrate() {
+    if (migrating) return;                 // 実行中の再呼び出しを弾く
     const local = lsAll();
-    if (!local.length) return;
+    if (!local.length) return;             // 移す元が無ければ何もしない
+    migrating = true;
+    // 先に端末側を空にする → 直後にもう一度呼ばれても取り込む元データが無く、二重挿入されない
+    try { localStorage.removeItem(LS); } catch (e) {}
     const rows = local.map(a => ({ question_id: a.question_id, chosen: a.chosen, correct: !!a.correct, answered_at: a.answered_at }));
-    try { const { error } = await sb.from("attempts").insert(rows); if (!error) localStorage.removeItem(LS); }
-    catch (e) { console.error("[FMBStore] migrate failed", e); }
+    try {
+      const { error } = await sb.from("attempts").insert(rows);
+      if (error) {                         // 送信失敗時は書き戻して次回リトライできるようにする
+        try { localStorage.setItem(LS, JSON.stringify(local)); } catch (e) {}
+        console.error("[FMBStore] migrate failed", error);
+      }
+    } catch (e) {
+      try { localStorage.setItem(LS, JSON.stringify(local)); } catch (e2) {}
+      console.error("[FMBStore] migrate failed", e);
+    } finally {
+      migrating = false;
+    }
   }
 
   // ヘッダーのログイン表示（まずは最小構成。あとで綺麗にできます）

@@ -78,8 +78,9 @@
     if(window.FMBStore){
       FMBStore.getHistory().then(h=>{
         const host=document.querySelector('#home .home'); if(!host) return;
+        document.querySelectorAll('#fmb-mystats').forEach(el=>el.remove()); // 既存の記録欄を全消し→重複表示を防ぐ
         const n=h.length, ok=h.filter(x=>x.correct).length; if(!n) return;
-        const box=document.createElement('div'); box.className='domains'; box.style.marginTop='24px';
+        const box=document.createElement('div'); box.id='fmb-mystats'; box.className='domains'; box.style.marginTop='24px';
         const who=FMBStore.getUser()?'':' · <span style="color:var(--faint)">※未ログイン（この端末のみ）</span>';
         box.innerHTML='<div class="lab">あなたの記録</div><div style="color:var(--muted);font-size:14px">累計 '+n+' 問回答 · 正答 '+ok+'（'+Math.round(ok/n*100)+'%）'+who+'</div>';
         host.appendChild(box);
