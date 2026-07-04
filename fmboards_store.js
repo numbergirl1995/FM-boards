@@ -2,6 +2,7 @@
    （未ログイン時は localStorage、ログイン時は Supabase に保存）
    ※このファイルの値（URL・publishableキー）はブラウザに公開されて問題ないものです。 */
 (function () {
+  console.log("%c[FMBStore] version v2-fix (二重計上ガード入り) を読み込みました", "color:#7c6cff;font-weight:bold");
   // ===== あなたのプロジェクトの値（設定済み） =====
   const SUPABASE_URL = "https://pptxeutnosgacovtvtkp.supabase.co";                 // Project URL（/rest/v1/ は付けない）
   const SUPABASE_KEY = "sb_publishable_rYuQgenibvay-0ylb6nC1g_Gcuk2azE";           // Publishable key（公開OK）
@@ -24,6 +25,7 @@
   const lsAdd = a => { const x = lsAll(); x.push(a); try { localStorage.setItem(LS, JSON.stringify(x)); } catch (e) {} };
 
   const FMBStore = {
+    version: "v2-fix",
     getUser: () => user,
     onChange: fn => listeners.push(fn),
 
