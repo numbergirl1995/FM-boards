@@ -50,42 +50,99 @@
   /* ---------- home (2 modes) ---------- */
   function categories(){const m={};Q.forEach((q,i)=>(q.cat||[]).forEach(c=>{(m[c]=m[c]||[]).push(i)}));return m;}
   function setMeta(setId){return Q.map((q,i)=>i).filter(i=>Q[i].setId===setId);}
+  /* Stage 1: 見た目の移植のみ。スコープ絞り込み・ランダム中身・実データ配線は後段。
+     数値（128問 / 71% / 連続6日 / 47%）はプレースホルダのハードコード。
+     reveal は使わない（renderHome はトグルで再実行されるため、observer初回限定だと再描画後に消える）。*/
   function renderHome(){
-    const b1=lsGet('fmb_best_set1'), b2=lsGet('fmb_best_set2');
-    const s1=setMeta('set1'), s2=setMeta('set2'), cats=categories();
-    const domList=gis=>gis.map(i=>`<span class="dchip">${Q[i].domEn}</span>`).join('');
-    const catChips=Object.keys(cats).sort().map(c=>`<button class="catchip" data-cat="${c}">${c}<span class="cc">${cats[c].length}</span></button>`).join('');
-    const rs=loadState();
-    const resumeBtn=rs?`<button class="resumebar" id="resume">▶ 中断した${rs.ss>0?('セット'+String(rs.sid).replace('set','')):('テーマ「'+String(rs.sid).replace('theme:','')+'」')}を再開（解答済 ${(rs.r||[]).filter(x=>x).length} / ${rs.g.length}問）</button>`:'';
-    $('#home').innerHTML=`<div class="home">
-      <div class="kicker">家庭医療専門医 · 筆記想定問題集</div>
-      <h1>現場で差がつく<br><span class="g">10問</span>。</h1>
-      <p class="lead">総合診療「専門医」レベル。一次文献（PubMed照合済）に基づく深い解説。解答後に<b>正答率・全選択肢の選択率・識別指数</b>が出ます。</p>
-      ${resumeBtn}
-      <div class="modesec">
-        <div class="modlab"><span class="mi">①</span> 5問セット <span class="ms">テスト形式・完答者平均つき</span></div>
-        <div class="setcards">
-          <button class="setcard s-set1" data-set="set1"><div class="sct">セット 1</div><div class="scq">Q1 – Q5</div><div class="scd">${domList(s1)}</div><div class="scb">${b1?('自己ベスト '+b1+' / 5'):'未挑戦'}</div><span class="scgo">▶</span></button>
-          <button class="setcard s-set2" data-set="set2"><div class="sct">セット 2</div><div class="scq">Q6 – Q10</div><div class="scd">${domList(s2)}</div><div class="scb">${b2?('自己ベスト '+b2+' / 5'):'未挑戦'}</div><span class="scgo">▶</span></button>
+    $('#home').innerHTML=`
+      <section class="hero">
+        <h1 class="h1">「わかったつもり」を、<span class="accent">潰す。</span></h1>
+        <p class="lede">読むだけでは、“わかったつもり”で終わる。解いて、間違えて、なぜを潰す——PubMedの一次文献にもとづく解説を、<b>すべての選択肢</b>に。試験のためではなく、<b>明日の診療を変える</b>ために。</p>
+      </section>
+
+      <div class="scopewrap">
+        <div class="seg" role="tablist" aria-label="出題範囲">
+          <button role="tab" aria-selected="true" data-scope="gp">総合診療・家庭医療 <span class="k">BASE</span></button>
+          <button role="tab" aria-selected="false" data-scope="im">総合内科 <span class="k">FOCUS</span></button>
         </div>
-        <div class="modlab"><span class="mi">②</span> テーマ別 <span class="ms">領域で横断的に学ぶ</span></div>
-        <div class="catwrap">${catChips}</div>
+        <div class="scopenote" id="scopenote"><b>幅広い総合診療の範囲</b>から出題します。</div>
       </div>
-    </div>`;
-    document.querySelectorAll('.setcard').forEach(b=>b.onclick=()=>startSet(b.dataset.set));
-    document.querySelectorAll('.catchip').forEach(b=>b.onclick=()=>startTheme(b.dataset.cat));
-    const rb=$('#resume'); if(rb)rb.onclick=resumeState;
-    if(window.FMBStore){
-      FMBStore.getHistory().then(h=>{
-        const host=document.querySelector('#home .home'); if(!host) return;
-        document.querySelectorAll('#fmb-mystats').forEach(el=>el.remove()); // 既存の記録欄を全消し→重複表示を防ぐ
-        const n=h.length, ok=h.filter(x=>x.correct).length; if(!n) return;
-        const box=document.createElement('div'); box.id='fmb-mystats'; box.className='domains'; box.style.marginTop='24px';
-        const who=FMBStore.getUser()?'':' · <span style="color:var(--faint)">※未ログイン（この端末のみ）</span>';
-        box.innerHTML='<div class="lab">あなたの記録</div><div style="color:var(--muted);font-size:14px">累計 '+n+' 問回答 · 正答 '+ok+'（'+Math.round(ok/n*100)+'%）'+who+'</div>';
-        host.appendChild(box);
-      });
-    }
+
+      <section class="section">
+        <div class="sec-h"><h2>解きはじめる</h2><span class="sub">まずはここから</span></div>
+        <div class="primary-card">
+          <div class="txt">
+            <div class="tag mono">おすすめ</div>
+            <h3>ランダムに解く</h3>
+            <p>全範囲から、毎回ちがう一問を。番号順に縛られず、すきま時間の一問が、深さになって積み上がる。</p>
+          </div>
+          <span class="cta">はじめる →</span>
+        </div>
+        <div class="mode-strip">
+          <div class="scard" id="setcard">
+            <div class="tag mono">本番形式</div>
+            <h4>5問セット <span class="pill">テスト</span></h4>
+            <p>5問を通しで。採点と解説は、解き終えたあとにまとめて。</p>
+            <span class="go">→</span>
+          </div>
+          <div class="scard soon" id="weakcard">
+            <div class="tag mono">これから</div>
+            <h4>弱点を解く <span class="pill">近日</span></h4>
+            <p>正答率の低い問題だけを、あなたの記録から自動で。復習を最短ルートに。</p>
+          </div>
+        </div>
+      </section>
+
+      <section class="section" style="padding-top:12px">
+        <div class="sec-h"><h2>テーマ別で解く</h2><span class="sub" id="themesub">全15領域</span></div>
+        <div class="chips" id="chips">
+          <button class="chip" data-im="1">アレルギー <span class="n">1</span></button>
+          <button class="chip" data-im="1">免疫・膠原病 <span class="n">1</span></button>
+          <button class="chip" data-im="0">公衆衛生・予防 <span class="n">2</span></button>
+          <button class="chip" data-im="1">内分泌・代謝 <span class="n">3</span></button>
+          <button class="chip" data-im="0">医療制度 <span class="n">1</span></button>
+          <button class="chip" data-im="0">女性医療 <span class="n">1</span></button>
+          <button class="chip" data-im="0">小児 <span class="n">1</span></button>
+          <button class="chip" data-im="1">循環器 <span class="n">2</span></button>
+          <button class="chip" data-im="1">感染症 <span class="n">2</span></button>
+          <button class="chip" data-im="1">救急 <span class="n">1</span></button>
+          <button class="chip" data-im="1">整形・骨代謝 <span class="n">1</span></button>
+          <button class="chip" data-im="1">精神 <span class="n">1</span></button>
+          <button class="chip" data-im="1">緩和ケア <span class="n">1</span></button>
+          <button class="chip" data-im="1">老年医学 <span class="n">3</span></button>
+          <button class="chip" data-im="1">薬剤・中毒 <span class="n">3</span></button>
+        </div>
+      </section>
+
+      <section class="section" style="padding-top:12px">
+        <div class="record">
+          <div>
+            <div class="lbl mono">あなたの記録</div>
+            <div class="stats">
+              <div class="stat"><div class="v">128<em>問</em></div><div class="c">解答した問題</div></div>
+              <div class="stat"><div class="v">71<em>%</em></div><div class="c">通算正答率</div></div>
+              <div class="stat"><div class="v">6<em>日</em></div><div class="c">連続学習</div></div>
+            </div>
+            <div class="bar-mini"><i></i></div>
+          </div>
+          <div class="msg">全問題の<b>47%</b>を制覇。<br>まだ見ぬ問いが、あなたを待っている。</div>
+        </div>
+      </section>
+
+      <div class="home-foot">
+        <span>GIM Boards ・ 総合診療 × 総合内科 ・ 一次文献ベースの臨床問題</span>
+        <span>デザイン移植 Stage 1（見た目のみ・数値はプレースホルダ）</span>
+      </div>`;
+
+    /* スコープトグルは Stage 1 では見た目のみ（aria-selected と注記の切替のみ。出題プールは絞らない）。*/
+    const segBtns=document.querySelectorAll('#home .seg button');
+    const note=$('#scopenote');
+    segBtns.forEach(b=>b.addEventListener('click',()=>{
+      segBtns.forEach(x=>x.setAttribute('aria-selected', x===b));
+      note.innerHTML = b.dataset.scope==='im'
+        ? '総合内科の基盤固めモード。<b>小児・女性医療・公衆衛生・医療制度を除外</b>します（絞り込みは次段階で実装）。'
+        : '<b>幅広い総合診療の範囲</b>から出題します。';
+    }));
   }
 
   /* ---------- run control ---------- */
