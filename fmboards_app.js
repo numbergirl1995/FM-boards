@@ -48,7 +48,7 @@
   function resumeState(){const s=loadState();if(!s)return;run=s.g.map(i=>({q:Q[i],gi:i}));idx=s.i||0;results=(s.r||[]).slice(0,run.length);while(results.length<run.length)results.push(null);session=s.s||newSession();logSetId=s.sid||'';logSetSize=s.ss||0;renderQuestion();show('#quiz');}
 
   /* ---------- home (2 modes) ---------- */
-  function categories(){const m={};Q.forEach((q,i)=>(q.cat||[]).forEach(c=>{(m[c]=m[c]||[]).push(i)}));return m;}
+  function categories(){const m={};Q.forEach((q,i)=>{const c=q.category;if(c)(m[c]=m[c]||[]).push(i)});return m;}
   function setMeta(setId){return Q.map((q,i)=>i).filter(i=>Q[i].setId===setId);}
   /* Stage 1: 見た目の移植のみ。スコープ絞り込み・ランダム中身・実データ配線は後段。
      数値（128問 / 71% / 連続6日 / 47%）はプレースホルダのハードコード。
