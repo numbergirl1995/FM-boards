@@ -1,0 +1,257 @@
+<!DOCTYPE html>
+<html lang="ja">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>GIM Boards — デザイン案</title>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700;800&family=Noto+Sans+JP:wght@400;500;700;800&family=JetBrains+Mono:wght@500;600&display=swap" rel="stylesheet">
+<style>
+:root{
+  --ink:#0A0C11; --ink-2:#0F131A; --ink-3:#151A22;
+  --line:#242B37; --line-soft:#1B212B;
+  --text:#ECEEF3; --muted:#98A2B3; --faint:#5B6472;
+  --iris:#8E82FF; --iris-soft:#B7AFFF; --iris-deep:#6C5CE0; --mint:#4FD9A6;
+  --sans:-apple-system,BlinkMacSystemFont,"Helvetica Neue","Hiragino Sans","Hiragino Kaku Gothic ProN","Noto Sans JP","Inter",sans-serif;
+  --mono:ui-monospace,"SF Mono",Menlo,"JetBrains Mono",monospace;
+  --r-lg:22px; --maxw:1000px;
+}
+*{box-sizing:border-box;margin:0;padding:0}
+html{-webkit-text-size-adjust:100%}
+body{font-family:var(--sans); color:var(--text); background:var(--ink); line-height:1.75; -webkit-font-smoothing:antialiased; overflow-x:hidden}
+body::before{content:""; position:fixed; inset:0; z-index:-2;
+  background:radial-gradient(1100px 620px at 72% -8%, rgba(142,130,255,.15), transparent 60%),
+             radial-gradient(900px 500px at 8% 4%, rgba(79,217,166,.045), transparent 55%), var(--ink)}
+body::after{content:""; position:fixed; inset:0; z-index:-1; opacity:.03; pointer-events:none;
+  background-image:url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='140' height='140'%3E%3Cfilter id='n'%3E%3CfeTurbulence type='fractalNoise' baseFrequency='.9' numOctaves='2'/%3E%3C/filter%3E%3Crect width='100%25' height='100%25' filter='url(%23n)'/%3E%3C/svg%3E")}
+a{color:inherit;text-decoration:none}
+:focus-visible{outline:2px solid var(--iris-soft); outline-offset:3px; border-radius:8px}
+.wrap{max-width:var(--maxw); margin:0 auto; padding:0 28px}
+.mono{font-family:var(--mono); font-weight:500; letter-spacing:.12em; text-transform:uppercase}
+
+header{position:sticky; top:0; z-index:40; backdrop-filter:blur(14px); background:rgba(10,12,17,.72); border-bottom:1px solid var(--line-soft)}
+.bar{max-width:var(--maxw); margin:0 auto; padding:16px 28px; display:flex; align-items:center; justify-content:space-between; gap:20px}
+.brand{display:flex; align-items:center; gap:11px}
+.mark{width:11px; height:11px; border-radius:50%; background:var(--iris); box-shadow:0 0 0 4px rgba(142,130,255,.16), 0 0 18px rgba(142,130,255,.7)}
+.brand b{font-weight:700; letter-spacing:.14em; font-size:15px}
+.acct{position:relative}
+.avatar{width:34px; height:34px; border-radius:50%; border:1px solid var(--line); background:linear-gradient(145deg,#20242e,#151922); color:var(--iris-soft); font-family:var(--mono); font-weight:600; font-size:14px; display:grid; place-items:center; cursor:pointer; transition:border-color .2s, transform .2s}
+.avatar:hover{border-color:var(--iris-deep); transform:translateY(-1px)}
+.menu{position:absolute; right:0; top:46px; min-width:210px; padding:8px; background:var(--ink-3); border:1px solid var(--line); border-radius:14px; box-shadow:0 24px 60px rgba(0,0,0,.5); display:none}
+.menu.open{display:block; animation:pop .16s ease}
+@keyframes pop{from{opacity:0; transform:translateY(-6px)}to{opacity:1; transform:none}}
+.menu .who{padding:8px 10px 10px; border-bottom:1px solid var(--line-soft); margin-bottom:6px}
+.menu .who small{display:block; color:var(--faint); font-size:11px; letter-spacing:.08em; margin-bottom:3px; font-family:var(--mono)}
+.menu .who .em{color:var(--muted); font-size:13px; word-break:break-all}
+.menu button{width:100%; text-align:left; padding:9px 10px; border:0; border-radius:9px; cursor:pointer; background:transparent; color:var(--text); font-family:var(--sans); font-size:14px}
+.menu button:hover{background:rgba(142,130,255,.12); color:var(--iris-soft)}
+
+.hero{padding:88px 0 26px}
+.h1{font-weight:800; color:#fff; font-size:clamp(2.05rem, 5.6vw, 3.5rem); line-height:1.42; letter-spacing:-.01em; margin-bottom:28px; word-break:keep-all}
+.h1 .accent{color:var(--iris-soft); text-shadow:0 0 34px rgba(142,130,255,.4)}
+.lede{max-width:54ch; color:var(--muted); font-size:clamp(1rem,1.5vw,1.14rem); line-height:2}
+.lede b{color:var(--text); font-weight:700}
+
+.scopewrap{margin:40px 0 8px; display:flex; flex-wrap:wrap; align-items:center; gap:16px}
+.seg{display:inline-flex; padding:5px; gap:4px; background:var(--ink-2); border:1px solid var(--line); border-radius:999px}
+.seg button{border:0; cursor:pointer; padding:10px 20px; border-radius:999px; font-family:var(--sans); font-weight:700; font-size:14px; color:var(--muted); background:transparent; transition:.2s; display:flex; align-items:center; gap:8px}
+.seg button .k{font-family:var(--mono); font-weight:500; font-size:10px; letter-spacing:.1em; opacity:.7}
+.seg button[aria-selected="true"]{background:linear-gradient(180deg,#232838,#1a1f2b); color:#fff; box-shadow:inset 0 0 0 1px var(--iris-deep), 0 6px 16px rgba(0,0,0,.35)}
+.scopenote{font-size:12.5px; color:var(--faint); max-width:38ch}
+.scopenote b{color:var(--muted); font-weight:700}
+
+.section{padding:44px 0}
+.sec-h{display:flex; align-items:baseline; gap:14px; margin-bottom:22px}
+.sec-h h2{font-weight:700; font-size:19px}
+.sec-h .sub{color:var(--faint); font-size:12.5px}
+
+/* primary full-width mode */
+.primary-card{border:1px solid #2c3040; border-radius:var(--r-lg);
+  background:radial-gradient(560px 320px at 86% -25%, rgba(142,130,255,.22), transparent 60%), var(--ink-3);
+  padding:32px; display:flex; align-items:center; justify-content:space-between; gap:28px; flex-wrap:wrap;
+  cursor:pointer; transition:border-color .22s, transform .22s, box-shadow .22s}
+.primary-card:hover{border-color:var(--iris-deep); transform:translateY(-3px); box-shadow:0 20px 46px rgba(0,0,0,.45)}
+.primary-card .tag{font-size:10.5px; color:var(--iris-soft); margin-bottom:13px}
+.primary-card h3{font-weight:800; font-size:clamp(1.35rem,3vw,1.85rem); letter-spacing:-.01em; margin-bottom:9px; color:#fff}
+.primary-card p{color:var(--muted); font-size:14px; max-width:48ch; line-height:1.85}
+.primary-card .cta{flex-shrink:0; display:inline-flex; align-items:center; gap:9px; background:linear-gradient(180deg,var(--iris),var(--iris-deep)); color:#fff; font-weight:700; font-size:15px; padding:15px 26px; border-radius:13px; box-shadow:0 10px 26px rgba(108,92,224,.4); transition:.2s}
+.primary-card:hover .cta{transform:translateY(-2px); box-shadow:0 14px 32px rgba(108,92,224,.55)}
+
+/* secondary modes */
+.mode-strip{display:grid; grid-template-columns:repeat(auto-fit,minmax(270px,1fr)); gap:16px; margin-top:16px}
+.scard{position:relative; border:1px solid var(--line); border-radius:var(--r-lg); background:var(--ink-2); padding:24px; transition:border-color .2s, transform .2s, box-shadow .2s; cursor:pointer}
+.scard:hover{border-color:var(--iris-deep); transform:translateY(-3px); box-shadow:0 16px 36px rgba(0,0,0,.4)}
+.scard .tag{font-size:10.5px; color:var(--iris-soft); margin-bottom:12px}
+.scard h4{font-weight:700; font-size:17px; margin-bottom:7px; display:flex; align-items:center; gap:9px}
+.scard p{color:var(--muted); font-size:13px; line-height:1.8; max-width:40ch}
+.scard .go{position:absolute; right:22px; bottom:20px; color:var(--faint); font-size:19px; transition:.2s}
+.scard:hover .go{color:var(--iris-soft); transform:translateX(3px)}
+.scard.soon{opacity:.6; cursor:default}
+.scard.soon:hover{transform:none; border-color:var(--line); box-shadow:none}
+.scard.soon .go{display:none}
+.pill{font-family:var(--mono); font-size:9.5px; letter-spacing:.12em; padding:4px 8px; border-radius:999px; border:1px solid var(--line); color:var(--faint)}
+
+/* themes */
+.chips{display:flex; flex-wrap:wrap; gap:9px}
+.chip{display:inline-flex; align-items:center; gap:9px; padding:11px 16px; border-radius:12px; border:1px solid var(--line); background:var(--ink-2); color:var(--text); font-size:13.5px; cursor:pointer; transition:.18s}
+.chip:hover{border-color:var(--iris-deep); background:var(--ink-3); transform:translateY(-1px)}
+.chip .n{font-family:var(--mono); font-size:11px; color:var(--faint); background:#0c0f15; border:1px solid var(--line-soft); padding:1px 7px; border-radius:999px}
+.chip[hidden]{display:none}
+
+.record{border:1px solid var(--line-soft); border-radius:var(--r-lg); padding:26px 28px; background:linear-gradient(180deg,rgba(21,26,34,.5),rgba(15,19,26,.2)); display:flex; flex-wrap:wrap; align-items:center; justify-content:space-between; gap:24px}
+.record .lbl{font-size:10.5px; color:var(--faint); margin-bottom:14px}
+.stats{display:flex; gap:38px; flex-wrap:wrap}
+.stat .v{font-weight:800; font-size:32px; letter-spacing:-.02em; color:#fff; line-height:1}
+.stat .v em{font-style:normal; font-size:15px; color:var(--muted); font-weight:500; margin-left:3px}
+.stat .c{font-size:12px; color:var(--muted); margin-top:7px}
+.bar-mini{height:6px; border-radius:4px; background:#0c0f15; border:1px solid var(--line-soft); overflow:hidden; width:min(340px,42vw); margin-top:13px}
+.bar-mini i{display:block; height:100%; width:47%; background:linear-gradient(90deg,var(--iris),var(--mint))}
+.record .msg{color:var(--muted); font-size:13px; max-width:30ch}
+.record .msg b{color:var(--iris-soft); font-weight:700}
+
+footer{margin-top:20px; border-top:1px solid var(--line-soft); padding:34px 0 60px}
+footer .f{max-width:var(--maxw); margin:0 auto; padding:0 28px; display:flex; flex-wrap:wrap; justify-content:space-between; gap:16px; color:var(--faint); font-size:12.5px}
+footer a{color:var(--muted)} footer a:hover{color:var(--iris-soft)}
+
+.reveal{opacity:0; transform:translateY(14px)}
+.reveal.in{opacity:1; transform:none; transition:opacity .7s ease, transform .7s cubic-bezier(.2,.7,.2,1)}
+@media (max-width:760px){.hero{padding:56px 0 18px}.stats{gap:26px}.primary-card{padding:26px}.primary-card .cta{width:100%; justify-content:center}}
+@media (prefers-reduced-motion:reduce){.reveal{opacity:1; transform:none; transition:none}*{scroll-behavior:auto!important}}
+.demobar{background:rgba(142,130,255,.10); border-bottom:1px solid var(--line-soft); font-family:var(--mono); font-size:11px; letter-spacing:.06em; color:var(--iris-soft); text-align:center; padding:7px}
+</style>
+</head>
+<body>
+
+<div class="demobar">デザイン案 ・ 上部トグルは実際に切り替わります（総合診療 ⇄ 総合内科）</div>
+
+<header>
+  <div class="bar">
+    <a class="brand" href="#"><span class="mark"></span><b>GIM&nbsp;BOARDS</b></a>
+    <div class="acct">
+      <div class="avatar" id="av" tabindex="0" role="button" aria-label="アカウント">N</div>
+      <div class="menu" id="mn">
+        <div class="who"><small>ログイン中</small><div class="em">numbergirl1995@gmail.com</div></div>
+        <button>進捗をみる</button>
+        <button>ログアウト</button>
+      </div>
+    </div>
+  </div>
+</header>
+
+<main class="wrap">
+
+  <section class="hero">
+    <h1 class="h1 reveal">「わかったつもり」を、<span class="accent">潰す。</span></h1>
+    <p class="lede reveal">読むだけでは、“わかったつもり”で終わる。解いて、間違えて、なぜを潰す——PubMedの一次文献にもとづく解説を、<b>すべての選択肢</b>に。試験のためではなく、<b>明日の診療を変える</b>ために。</p>
+  </section>
+
+  <div class="scopewrap reveal">
+    <div class="seg" role="tablist" aria-label="出題範囲">
+      <button role="tab" aria-selected="true" data-scope="gp">総合診療・家庭医療 <span class="k">BASE</span></button>
+      <button role="tab" aria-selected="false" data-scope="im">総合内科 <span class="k">FOCUS</span></button>
+    </div>
+    <div class="scopenote" id="scopenote"><b>幅広い総合診療の範囲</b>から出題します。</div>
+  </div>
+
+  <section class="section">
+    <div class="sec-h reveal"><h2>解きはじめる</h2><span class="sub">まずはここから</span></div>
+
+    <div class="primary-card reveal">
+      <div class="txt">
+        <div class="tag mono">おすすめ</div>
+        <h3>ランダムに解く</h3>
+        <p>全範囲から、毎回ちがう一問を。番号順に縛られず、すきま時間の一問が、深さになって積み上がる。</p>
+      </div>
+      <span class="cta">はじめる →</span>
+    </div>
+
+    <div class="mode-strip">
+      <div class="scard reveal" id="setcard">
+        <div class="tag mono">本番形式</div>
+        <h4>5問セット <span class="pill">テスト</span></h4>
+        <p>5問を通しで。採点と解説は、解き終えたあとにまとめて。</p>
+        <span class="go">→</span>
+      </div>
+      <div class="scard soon reveal" id="weakcard">
+        <div class="tag mono">これから</div>
+        <h4>弱点を解く <span class="pill">近日</span></h4>
+        <p>正答率の低い問題だけを、あなたの記録から自動で。復習を最短ルートに。</p>
+      </div>
+    </div>
+  </section>
+
+  <section class="section" style="padding-top:12px">
+    <div class="sec-h reveal"><h2>テーマ別で解く</h2><span class="sub" id="themesub">全15領域</span></div>
+    <div class="chips reveal" id="chips">
+      <button class="chip" data-im="1">アレルギー <span class="n">1</span></button>
+      <button class="chip" data-im="1">免疫・膠原病 <span class="n">1</span></button>
+      <button class="chip" data-im="0">公衆衛生・予防 <span class="n">2</span></button>
+      <button class="chip" data-im="1">内分泌・代謝 <span class="n">3</span></button>
+      <button class="chip" data-im="0">医療制度 <span class="n">1</span></button>
+      <button class="chip" data-im="0">女性医療 <span class="n">1</span></button>
+      <button class="chip" data-im="0">小児 <span class="n">1</span></button>
+      <button class="chip" data-im="1">循環器 <span class="n">2</span></button>
+      <button class="chip" data-im="1">感染症 <span class="n">2</span></button>
+      <button class="chip" data-im="1">救急 <span class="n">1</span></button>
+      <button class="chip" data-im="1">整形・骨代謝 <span class="n">1</span></button>
+      <button class="chip" data-im="1">精神 <span class="n">1</span></button>
+      <button class="chip" data-im="1">緩和ケア <span class="n">1</span></button>
+      <button class="chip" data-im="1">老年医学 <span class="n">3</span></button>
+      <button class="chip" data-im="1">薬剤・中毒 <span class="n">3</span></button>
+    </div>
+  </section>
+
+  <section class="section" style="padding-top:12px">
+    <div class="record reveal">
+      <div>
+        <div class="lbl mono">あなたの記録</div>
+        <div class="stats">
+          <div class="stat"><div class="v">128<em>問</em></div><div class="c">解答した問題</div></div>
+          <div class="stat"><div class="v">71<em>%</em></div><div class="c">通算正答率</div></div>
+          <div class="stat"><div class="v">6<em>日</em></div><div class="c">連続学習</div></div>
+        </div>
+        <div class="bar-mini"><i></i></div>
+      </div>
+      <div class="msg">全問題の<b>47%</b>を制覇。<br>まだ見ぬ問いが、あなたを待っている。</div>
+    </div>
+  </section>
+
+</main>
+
+<footer>
+  <div class="f">
+    <span>GIM Boards ・ 総合診療 × 総合内科 ・ 一次文献ベースの臨床問題</span>
+    <span><a href="#">解説の方針</a> ・ <a href="#">プライバシー</a></span>
+  </div>
+</footer>
+
+<script>
+const av=document.getElementById('av'), mn=document.getElementById('mn');
+const toggleMenu=()=>mn.classList.toggle('open');
+av.addEventListener('click',toggleMenu);
+av.addEventListener('keydown',e=>{if(e.key==='Enter'||e.key===' '){e.preventDefault();toggleMenu();}});
+document.addEventListener('click',e=>{if(!e.target.closest('.acct'))mn.classList.remove('open');});
+
+const segBtns=document.querySelectorAll('.seg button');
+const chips=document.querySelectorAll('#chips .chip');
+const setcard=document.getElementById('setcard');
+const note=document.getElementById('scopenote');
+const themesub=document.getElementById('themesub');
+function applyScope(scope){
+  segBtns.forEach(b=>b.setAttribute('aria-selected', b.dataset.scope===scope));
+  const im = scope==='im';
+  chips.forEach(c=>{ c.hidden = im && c.dataset.im==='0'; });
+  setcard.style.display = im ? 'none' : '';
+  note.innerHTML = im
+    ? '総合内科の基盤固めモード。<b>小児・女性医療・公衆衛生・医療制度を除外</b>し、テスト形式はお休みします。'
+    : '<b>幅広い総合診療の範囲</b>から出題します。';
+  themesub.textContent = im ? [...chips].filter(c=>!c.hidden).length+'領域' : '全15領域';
+}
+segBtns.forEach(b=>b.addEventListener('click',()=>applyScope(b.dataset.scope)));
+
+const io=new IntersectionObserver((es)=>es.forEach(e=>{if(e.isIntersecting){e.target.classList.add('in');io.unobserve(e.target);}}),{threshold:.12});
+document.querySelectorAll('.reveal').forEach((el,i)=>{el.style.transitionDelay=(Math.min(i,6)*40)+'ms'; io.observe(el);});
+</script>
+</body>
+</html>
