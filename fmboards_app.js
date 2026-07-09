@@ -125,7 +125,6 @@
 
       <div class="home-foot">
         <span>GIM Boards ・ 総合診療 × 総合内科 ・ 一次文献ベースの臨床問題</span>
-        <span>デザイン移植 Stage 1（見た目のみ・数値はプレースホルダ）</span>
       </div>`;
 
     /* スコープトグル：scope を更新し、chip一覧・件数・注記をスコープに追随させる（renderHome 全体は呼び直さない）。*/
