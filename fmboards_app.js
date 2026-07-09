@@ -10,6 +10,7 @@
   /* run state */
   let run=[], idx=0, results=[], session='', logSetId='', logSetSize=0;
   let AGG=null;                       // aggregate stats from server (page-load snapshot)
+  let scope='gp';                     // 出題スコープ：'gp'=総合診療（全カテゴリー）/ 'im'=総合内科（imCore のみ）
 
   /* ---------- progress bar + scroll reveal ---------- */
   const pg=$('#pg');
@@ -50,6 +51,15 @@
   /* ---------- home (2 modes) ---------- */
   function categories(){const m={};Q.forEach((q,i)=>{const c=q.category;if(c)(m[c]=m[c]||[]).push(i)});return m;}
   function setMeta(setId){return Q.map((q,i)=>i).filter(i=>Q[i].setId===setId);}
+
+  /* ---------- scope (総合診療 ⇄ 総合内科) ---------- */
+  const CATS=(typeof CATEGORIES!=='undefined')?CATEGORIES:(window.CATEGORIES||[]);
+  /* 現在のスコープで表示するカテゴリー定義（表示順を保持）。im は imCore のみ。*/
+  function scopeCats(){return scope==='im'?CATS.filter(c=>c.imCore):CATS.slice();}
+  /* 現在のスコープに属する問題index配列（＝絞り込み済み出題プール）。Stage 3 でランダム出題に結線する。*/
+  function scopedPool(){const allow=new Set(scopeCats().map(c=>c.name));return Q.map((q,i)=>i).filter(i=>allow.has(Q[i].category));}
+  /* 現在のスコープで表示するテーマchip：{name,count}。実データで数え直し、0件は除外。*/
+  function themeChips(){const m=categories();return scopeCats().map(c=>({name:c.name,count:(m[c.name]||[]).length})).filter(t=>t.count>0);}
   /* Stage 1: 見た目の移植のみ。スコープ絞り込み・ランダム中身・実データ配線は後段。
      数値（128問 / 71% / 連続6日 / 47%）はプレースホルダのハードコード。
      reveal は使わない（renderHome はトグルで再実行されるため、observer初回限定だと再描画後に消える）。*/
@@ -94,24 +104,8 @@
       </section>
 
       <section class="section" style="padding-top:12px">
-        <div class="sec-h"><h2>テーマ別で解く</h2><span class="sub" id="themesub">全15領域</span></div>
-        <div class="chips" id="chips">
-          <button class="chip" data-im="1">アレルギー <span class="n">1</span></button>
-          <button class="chip" data-im="1">免疫・膠原病 <span class="n">1</span></button>
-          <button class="chip" data-im="0">公衆衛生・予防 <span class="n">2</span></button>
-          <button class="chip" data-im="1">内分泌・代謝 <span class="n">3</span></button>
-          <button class="chip" data-im="0">医療制度 <span class="n">1</span></button>
-          <button class="chip" data-im="0">女性医療 <span class="n">1</span></button>
-          <button class="chip" data-im="0">小児 <span class="n">1</span></button>
-          <button class="chip" data-im="1">循環器 <span class="n">2</span></button>
-          <button class="chip" data-im="1">感染症 <span class="n">2</span></button>
-          <button class="chip" data-im="1">救急 <span class="n">1</span></button>
-          <button class="chip" data-im="1">整形・骨代謝 <span class="n">1</span></button>
-          <button class="chip" data-im="1">精神 <span class="n">1</span></button>
-          <button class="chip" data-im="1">緩和ケア <span class="n">1</span></button>
-          <button class="chip" data-im="1">老年医学 <span class="n">3</span></button>
-          <button class="chip" data-im="1">薬剤・中毒 <span class="n">3</span></button>
-        </div>
+        <div class="sec-h"><h2>テーマ別で解く</h2><span class="sub" id="themesub">全領域</span></div>
+        <div class="chips" id="chips"></div>
       </section>
 
       <section class="section" style="padding-top:12px">
@@ -134,15 +128,28 @@
         <span>デザイン移植 Stage 1（見た目のみ・数値はプレースホルダ）</span>
       </div>`;
 
-    /* スコープトグルは Stage 1 では見た目のみ（aria-selected と注記の切替のみ。出題プールは絞らない）。*/
+    /* スコープトグル：scope を更新し、chip一覧・件数・注記をスコープに追随させる（renderHome 全体は呼び直さない）。*/
     const segBtns=document.querySelectorAll('#home .seg button');
     const note=$('#scopenote');
     segBtns.forEach(b=>b.addEventListener('click',()=>{
+      scope=b.dataset.scope==='im'?'im':'gp';
       segBtns.forEach(x=>x.setAttribute('aria-selected', x===b));
-      note.innerHTML = b.dataset.scope==='im'
-        ? '総合内科の基盤固めモード。<b>小児・女性医療・公衆衛生・医療制度を除外</b>します（絞り込みは次段階で実装）。'
+      note.innerHTML = scope==='im'
+        ? '総合内科の基盤固めモード。<b>小児・思春期／女性医療（産婦人科）／予防医療・公衆衛生／地域医療・医療制度・在宅を除外</b>して出題します。'
         : '<b>幅広い総合診療の範囲</b>から出題します。';
+      renderChips();
     }));
+
+    renderChips();
+  }
+
+  /* テーマchip を現在のスコープの実データから動的生成する。0件カテゴリーは表示しない。*/
+  function renderChips(){
+    const host=$('#chips'); if(!host)return;
+    const chips=themeChips();
+    host.innerHTML=chips.map(t=>`<button class="chip" data-cat="${t.name}">${t.name} <span class="n">${t.count}</span></button>`).join('');
+    const sub=$('#themesub'); if(sub)sub.textContent=chips.length+'領域・'+scopedPool().length+'問';
+    /* onclick 配線（startTheme への結線）は Stage 3 で実装する。*/
   }
 
   /* ---------- run control ---------- */
