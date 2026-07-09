@@ -287,3 +287,16 @@ body::after{content:"";position:fixed;inset:0;z-index:-1;opacity:.03;pointer-eve
 #home .home-foot a:hover{color:var(--iris-soft)}
 
 @media(max-width:760px){#home .hero{padding:28px 0 4px}#home .stats{gap:24px}#home .primary-card{padding:24px}#home .cta{width:100%;justify-content:center}}
+
+/* ---- account avatar + dropdown menu (header #auth) ---- */
+.acct{position:relative}
+.avatar{width:34px; height:34px; border-radius:50%; border:1px solid var(--line); background:linear-gradient(145deg,#20242e,#151922); color:var(--iris-soft); font-family:var(--mono); font-weight:600; font-size:14px; display:grid; place-items:center; cursor:pointer; transition:border-color .2s, transform .2s}
+.avatar:hover{border-color:var(--iris-deep); transform:translateY(-1px)}
+.menu{position:absolute; right:0; top:46px; min-width:210px; padding:8px; background:var(--ink-3); border:1px solid var(--line); border-radius:14px; box-shadow:0 24px 60px rgba(0,0,0,.5); display:none}
+.menu.open{display:block; animation:pop .16s ease}
+@keyframes pop{from{opacity:0; transform:translateY(-6px)}to{opacity:1; transform:none}}
+.menu .who{padding:8px 10px 10px; border-bottom:1px solid var(--line-soft); margin-bottom:6px}
+.menu .who small{display:block; color:var(--faint); font-size:11px; letter-spacing:.08em; margin-bottom:3px; font-family:var(--mono)}
+.menu .who .em{color:var(--muted); font-size:13px; word-break:break-all}
+.menu button{width:100%; text-align:left; padding:9px 10px; border:0; border-radius:9px; cursor:pointer; background:transparent; color:var(--text); font-family:var(--sans); font-size:14px}
+.menu button:hover{background:rgba(142,130,255,.12); color:var(--iris-soft)}

@@ -89,9 +89,29 @@
   function renderAuth() {
     const el = document.getElementById("auth"); if (!el) return;
     if (user) {
-      el.innerHTML = user.email + ' · <a href="#" id="logout" style="color:var(--neon-2)">ログアウト</a>';
-      const b = document.getElementById("logout");
-      if (b) b.onclick = e => { e.preventDefault(); FMBStore.signOut(); };
+      // ログイン時：アバター（メール頭文字）＋ドロップダウンメニュー
+      const email = user.email || "";
+      const initial = (email.trim().charAt(0) || "?").toUpperCase();
+      el.innerHTML =
+        '<div class="acct">' +
+          '<div class="avatar" id="fmb-av" tabindex="0" role="button" aria-label="アカウント">' + initial + '</div>' +
+          '<div class="menu" id="fmb-mn">' +
+            '<div class="who"><small>ログイン中</small><div class="em">' + email + '</div></div>' +
+            '<button id="fmb-progress">進捗をみる</button>' +
+            '<button id="fmb-logout">ログアウト</button>' +
+          '</div>' +
+        '</div>';
+      const av = document.getElementById("fmb-av");
+      const mn = document.getElementById("fmb-mn");
+      const toggle = () => { if (mn) mn.classList.toggle("open"); };
+      if (av) {
+        av.onclick = toggle;
+        av.onkeydown = e => { if (e.key === "Enter" || e.key === " ") { e.preventDefault(); toggle(); } };
+      }
+      const pg = document.getElementById("fmb-progress");
+      if (pg) pg.onclick = () => { if (mn) mn.classList.remove("open"); if (window.FMBShowProgress) window.FMBShowProgress(); };
+      const lo = document.getElementById("fmb-logout");
+      if (lo) lo.onclick = () => { if (mn) mn.classList.remove("open"); FMBStore.signOut(); };  // 既存と同一：signOut を変更しない
     } else {
       el.innerHTML = '<a href="#" id="login" style="color:var(--neon-2)">進捗を保存（ログイン）</a>';
       const b = document.getElementById("login");
@@ -105,6 +125,13 @@
     }
   }
   FMBStore.onChange(renderAuth);
+  // 外クリックでアカウントメニューを閉じる（モジュール初期化時に1回だけ登録＝renderAuth 内で毎回登録しない／要素は都度取得）
+  document.addEventListener("click", e => {
+    if (e.target && !e.target.closest(".acct")) {
+      const mn = document.getElementById("fmb-mn");
+      if (mn) mn.classList.remove("open");
+    }
+  });
 
   // 認証状態の変化を監視
   sb.auth.onAuthStateChange(async (_e, session) => {

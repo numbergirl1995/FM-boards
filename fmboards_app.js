@@ -346,4 +346,7 @@
   loadStats();
   renderHome();
   if(window.FMBStore) FMBStore.onChange(function(){ if($('#home').classList.contains('active')) renderHome(); });
+
+  /* 認証メニュー「進捗をみる」用フック（store.js から疎結合に呼ばれる）：ホームを表示し記録パネルへスクロール。*/
+  window.FMBShowProgress=function(){ renderHome(); show('#home'); const rec=document.querySelector('#home .record'); if(rec)setTimeout(()=>rec.scrollIntoView({behavior:'smooth',block:'center'}),60); };
 })();
