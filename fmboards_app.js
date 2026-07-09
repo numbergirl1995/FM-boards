@@ -113,13 +113,13 @@
           <div>
             <div class="lbl mono">あなたの記録</div>
             <div class="stats">
-              <div class="stat"><div class="v">128<em>問</em></div><div class="c">解答した問題</div></div>
-              <div class="stat"><div class="v">71<em>%</em></div><div class="c">通算正答率</div></div>
-              <div class="stat"><div class="v">6<em>日</em></div><div class="c">連続学習</div></div>
+              <div class="stat"><div class="v" id="rec-answered">–<em>問</em></div><div class="c">解答した問題</div></div>
+              <div class="stat"><div class="v" id="rec-rate">–<em>%</em></div><div class="c">通算正答率</div></div>
+              <div class="stat"><div class="v" id="rec-streak">–<em>日</em></div><div class="c">連続学習</div></div>
             </div>
-            <div class="bar-mini"><i></i></div>
+            <div class="bar-mini"><i id="rec-bar"></i></div>
           </div>
-          <div class="msg">全問題の<b>47%</b>を制覇。<br>まだ見ぬ問いが、あなたを待っている。</div>
+          <div class="msg" id="rec-msg">記録を読み込み中…</div>
         </div>
       </section>
 
@@ -145,6 +145,7 @@
     const sc=$('#setcard'); if(sc)sc.onclick=startRandomSet;
 
     renderChips();
+    updateRecordPanel();
   }
 
   /* テーマchip を現在のスコープの実データから動的生成する。0件カテゴリーは表示しない。*/
@@ -155,6 +156,39 @@
     const sub=$('#themesub'); if(sub)sub.textContent=chips.length+'領域・'+scopedPool().length+'問';
     /* (B) 各 chip を startTheme に結線（data-cat から取得）。表示中の chip は必ず現在スコープ内。*/
     host.querySelectorAll('.chip').forEach(b=>b.onclick=()=>startTheme(b.dataset.cat));
+  }
+
+  /* ---------- 記録パネル（実データ） ---------- */
+  const dayKey=d=>d.getFullYear()+'-'+(d.getMonth()+1)+'-'+d.getDate();   // 端末ローカル日付キー
+  /* 履歴 h から 4値＋バー＋メッセージを算出して流し込む。要素が無ければ何もしない。*/
+  function paintRecord(h){
+    const A=$('#rec-answered'), R=$('#rec-rate'), S=$('#rec-streak'), B=$('#rec-bar'), M=$('#rec-msg');
+    if(!A||!R||!S||!B||!M)return;
+    const n=h.length, ok=h.filter(x=>x.correct).length;
+    const rate=n?Math.round(ok/n*100):0;                                  // ①延べ解答数 ②正答率（ゼロ除算ガード）
+    /* ④カバレッジ：現存Q(q1..qN)に限定した一意ID数 ÷ Q.length を 0〜100 にクランプ */
+    const valid=new Set(Q.map((q,i)=>qidOf(i)));
+    const uniq=new Set(h.map(x=>x.question_id).filter(id=>valid.has(id))).size;
+    const cov=Q.length?Math.max(0,Math.min(100,Math.round(uniq/Q.length*100))):0;
+    /* ③連続学習日数：ローカル日付キー集合から、今日（無ければ昨日猶予）を起点に連続数を遡ってカウント */
+    const days=new Set(h.map(x=>dayKey(new Date(x.answered_at))));
+    let streak=0; const cur=new Date(); cur.setHours(0,0,0,0);
+    if(!days.has(dayKey(cur))) cur.setDate(cur.getDate()-1);               // 昨日猶予
+    while(days.has(dayKey(cur))){ streak++; cur.setDate(cur.getDate()-1); }
+    A.innerHTML=n+'<em>問</em>';
+    R.innerHTML=rate+'<em>%</em>';
+    S.innerHTML=streak+'<em>日</em>';
+    B.style.width=cov+'%';
+    const guest=(window.FMBStore&&FMBStore.getUser&&FMBStore.getUser())?'':' <span style="color:var(--faint)">※この端末のみ（未ログイン）</span>';
+    M.innerHTML = n
+      ? ('全問題の<b>'+cov+'%</b>を制覇。<br>まだ見ぬ問いが、あなたを待っている。'+guest)
+      : ('まだ記録がありません。最初の一問を。'+guest);
+  }
+  /* getHistory は Promise。取得できなければゼロ状態で描画する。*/
+  function updateRecordPanel(){
+    if(window.FMBStore&&FMBStore.getHistory){
+      FMBStore.getHistory().then(paintRecord).catch(()=>paintRecord([]));
+    }else{ paintRecord([]); }
   }
 
   /* ---------- run control ---------- */
