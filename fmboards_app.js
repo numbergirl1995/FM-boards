@@ -92,7 +92,7 @@
           <div class="scard" id="setcard">
             <div class="tag mono">本番形式</div>
             <h4>5問セット <span class="pill">テスト</span></h4>
-            <p>5問を通しで。採点と解説は、解き終えたあとにまとめて。</p>
+            <p>5問を通しで。採点と解説は、解き終えたあとにまとめて。<br><b>全範囲から固定の5問</b>（総合診療／総合内科の切替とは独立）。</p>
             <span class="go">→</span>
           </div>
           <div class="scard soon" id="weakcard">
@@ -140,6 +140,10 @@
       renderChips();
     }));
 
+    /* (A) ランダムカード／(C) 5問セットカードの配線（chip は renderChips 内で配線）。*/
+    const rc=$('#home .primary-card'); if(rc)rc.onclick=startRandom;
+    const sc=$('#setcard'); if(sc)sc.onclick=startRandomSet;
+
     renderChips();
   }
 
@@ -149,7 +153,8 @@
     const chips=themeChips();
     host.innerHTML=chips.map(t=>`<button class="chip" data-cat="${t.name}">${t.name} <span class="n">${t.count}</span></button>`).join('');
     const sub=$('#themesub'); if(sub)sub.textContent=chips.length+'領域・'+scopedPool().length+'問';
-    /* onclick 配線（startTheme への結線）は Stage 3 で実装する。*/
+    /* (B) 各 chip を startTheme に結線（data-cat から取得）。表示中の chip は必ず現在スコープ内。*/
+    host.querySelectorAll('.chip').forEach(b=>b.onclick=()=>startTheme(b.dataset.cat));
   }
 
   /* ---------- run control ---------- */
@@ -163,8 +168,16 @@
   const startSet=setId=>startRun(setMeta(setId),setId,SETSIZE);
   const startTheme=cat=>startRun(categories()[cat]||[],'theme:'+cat,0);
 
+  /* Stage 3: ホームの各アクションを実出題に結線 */
+  const shuffle=a=>{const r=a.slice();for(let i=r.length-1;i>0;i--){const j=Math.floor(Math.random()*(i+1));[r[i],r[j]]=[r[j],r[i]];}return r;};
+  /* (A) ランダム：現在スコープのプール全問を Fisher-Yates でシャッフルして通し出題（setSize=0）。*/
+  const startRandom=()=>startRun(shuffle(scopedPool()),'random',0);
+  /* (C) 5問セット：完成している set1/set2 からランダムに1つ選ぶ（set3 は1問のみで除外）。スコープ非依存の固定パッケージ。*/
+  const COMPLETE_SETS=['set1','set2'];
+  const startRandomSet=()=>startSet(COMPLETE_SETS[Math.floor(Math.random()*COMPLETE_SETS.length)]);
+
   function pips(){return run.map((r,i)=>{let c='pip';if(i===idx)c+=' cur';if(results[i])c+=results[i].ok?' ok':' ng';return `<span class="${c}"></span>`}).join('')}
-  function runTag(){return logSetSize>0?('SET '+logSetId.replace('set','')):('THEME · '+logSetId.replace('theme:',''));}
+  function runTag(){if(logSetId==='random')return 'ランダム';return logSetSize>0?('SET '+logSetId.replace('set','')):('THEME · '+logSetId.replace('theme:',''));}
 
   function renderQuestion(){
     const r=run[idx], q=r.q, done=results[idx];
@@ -281,7 +294,7 @@
     const cells=run.map((r,i)=>{const x=results[i];const c=x?(x.ok?'ok':'ng'):'';return `<div class="cell ${c}">${String(r.gi+1).padStart(2,'0')}</div>`}).join('');
     const byDom={};run.forEach((r,i)=>{const k=r.q.dom;(byDom[k]=byDom[k]||[]).push(results[i]&&results[i].ok)});
     const bars=Object.entries(byDom).map(([k,a])=>{const ok=a.filter(Boolean).length,p=Math.round(ok/a.length*100);return `<div class="barrow"><span class="bl2">${k}</span><span class="tr"><i style="width:${p}%"></i></span><span class="mono" style="color:var(--muted)">${ok}/${a.length}</span></div>`}).join('');
-    const label=logSetSize>0?('SET '+logSetId.replace('set','')):('テーマ：'+logSetId.replace('theme:',''));
+    const label=logSetId==='random'?'ランダム':(logSetSize>0?('SET '+logSetId.replace('set','')):('テーマ：'+logSetId.replace('theme:','')));
     $('#result').innerHTML=`<div class="result">
       <div class="kicker mono" style="color:var(--neon-2);letter-spacing:.16em">RESULT · ${label}</div>
       <div class="scorewrap" style="margin-top:14px"><div class="score">${pct}<small>%</small></div><div class="scoremeta">正解 ${correct} / ${n}${bestLine}</div></div>
