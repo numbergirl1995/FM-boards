@@ -33,9 +33,13 @@ const CATEGORIES = [
   { name:"運動器・整形外科", imCore:true },
   { name:"精神・行動医学", imCore:true },
   { name:"小児・思春期", imCore:false },
-  { name:"女性医療（産婦人科）", imCore:false },
+  { name:"女性・男性医療（周産期含む）", imCore:false },
   { name:"予防医療・公衆衛生", imCore:false },
-  { name:"地域医療・医療制度・在宅", imCore:false }
+  { name:"地域医療・医療制度・在宅", imCore:false },
+  { name:"皮膚科", imCore:false },
+  { name:"眼科", imCore:false },
+  { name:"耳鼻咽喉科", imCore:false },
+  { name:"泌尿器科", imCore:false }
 ];
 
 const QUESTIONS = [
@@ -246,7 +250,7 @@ const QUESTIONS = [
   },
   /* ===================== Q3 (set1) ===================== */
   {
-    dom:"女性医療（HRT）", domEn:"MENOPAUSE", category:"女性医療（産婦人科）", setId:"set1",
+    dom:"女性医療（HRT）", domEn:"MENOPAUSE", category:"女性・男性医療（周産期含む）", setId:"set1",
     title:"血管運動症状への最適な治療",
     meta:"52 F · 女性外来 · 自然閉経後VMS · 特発性DVT既往",
     stem:`あなたは女性外来のある診療所に勤務している。52歳女性。1年前に自然閉経した。半年前から1日に数回の顔のほてり・発汗と寝汗による中途覚醒があり、日中の倦怠感で家事に支障が出ている。月経は12か月以上なく、不正性器出血はない。子宮全摘の既往はなく、子宮筋腫の指摘もない。5年前に長期臥床などの誘因なく左下肢深部静脈血栓症を発症し、抗凝固薬を6か月内服して中止した。乳癌・冠動脈疾患・肝疾患の既往はなく、家族歴に乳癌はない。喫煙はせず、BMIは24。血圧124/76mmHg。乳房・内診に異常はなく、直近の子宮頸部細胞診とマンモグラフィも異常を認めない。血管運動症状に対する治療として最も適切なのはどれか。`,

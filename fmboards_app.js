@@ -133,8 +133,9 @@
     segBtns.forEach(b=>b.addEventListener('click',()=>{
       scope=b.dataset.scope==='im'?'im':'gp';
       segBtns.forEach(x=>x.setAttribute('aria-selected', x===b));
+      const excluded=CATS.filter(c=>!c.imCore).map(c=>c.name).join('／');
       note.innerHTML = scope==='im'
-        ? '総合内科の基盤固めモード。<b>小児・思春期／女性医療（産婦人科）／予防医療・公衆衛生／地域医療・医療制度・在宅を除外</b>して出題します。'
+        ? `総合内科の基盤固めモード。<b>${excluded}を除外</b>して出題します。`
         : '<b>幅広い総合診療の範囲</b>から出題します。';
       renderChips();
     }));
