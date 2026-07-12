@@ -300,9 +300,10 @@
       <section class="sec s4 reveal"><div class="snum"><span class="n">04</span><h2>最新ガイドライン</h2></div><ul class="bl">${gl}</ul></section>
       ${pts?`<section class="sec s5 reveal"><div class="snum"><span class="n">05</span><h2>習得すべき要点</h2></div><ul class="bl">${pts}</ul></section>`:''}
       <section class="sec s6 reveal"><div class="snum"><span class="n">${pts?'06':'05'}</span><h2>参考文献</h2></div><div class="refs">${rf}</div></section>
-      <div class="navbtns"><button class="next" id="next">${last?'結果を見る':'次の問題へ'} &nbsp;→</button></div>`;
+      <div class="navbtns"><button class="next" id="next">${last?'結果を見る':'次の問題へ'} &nbsp;→</button><button class="btn-ghost" id="rest" style="padding:15px 22px">ホームへ戻る</button></div>`;
     $('#exp').classList.add('show');
     $('#next').onclick=()=>{ if(last){showResult()} else {idx++; renderQuestion()} };
+    $('#rest').onclick=()=>{ renderHome(); show('#home'); };
     document.querySelectorAll('.picochip').forEach(b=>b.onclick=()=>{const row=document.getElementById(b.dataset.t);if(!row)return;const open=row.classList.toggle('open');b.textContent=open?'PICO ▴':'PICO ▾';});
     $('.pips')&&($('.pips').innerHTML=pips());
     setTimeout(obs,40);
