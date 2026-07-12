@@ -306,7 +306,11 @@
     document.querySelectorAll('.picochip').forEach(b=>b.onclick=()=>{const row=document.getElementById(b.dataset.t);if(!row)return;const open=row.classList.toggle('open');b.textContent=open?'PICO ▴':'PICO ▾';});
     $('.pips')&&($('.pips').innerHTML=pips());
     setTimeout(obs,40);
-    setTimeout(()=>$('#exp').scrollIntoView({behavior:'smooth',block:'start'}),240);
+    setTimeout(()=>{
+      const sel=document.querySelector('#opts .opt[data-i="'+ci+'"]');
+      if(sel) sel.scrollIntoView({behavior:'smooth',block:'center'});
+      else $('#exp').scrollIntoView({behavior:'smooth',block:'start'});
+    },240);
   }
 
   /* ---------- result ---------- */
