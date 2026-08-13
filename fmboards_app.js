@@ -207,7 +207,7 @@
   /* (A) ランダム：現在スコープのプール全問を Fisher-Yates でシャッフルして通し出題（setSize=0）。*/
   const startRandom=()=>startRun(shuffle(scopedPool()),'random',0);
   /* (C) 5問セット：完成している set1/set2 からランダムに1つ選ぶ（set3 は1問のみで除外）。スコープ非依存の固定パッケージ。*/
-  const COMPLETE_SETS=['set1','set2'];
+  const COMPLETE_SETS=['set1','set2','set3','set4'];
   const startRandomSet=()=>startSet(COMPLETE_SETS[Math.floor(Math.random()*COMPLETE_SETS.length)]);
 
   function pips(){return run.map((r,i)=>{let c='pip';if(i===idx)c+=' cur';if(results[i])c+=results[i].ok?' ok':' ng';return `<span class="${c}"></span>`}).join('')}
